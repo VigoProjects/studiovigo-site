@@ -33,10 +33,19 @@ const year = new Date().getFullYear();
             <img src="/assets/test-logo.svg" alt="Vigo Product Development Studio" class="w-31" loading="lazy" />
           </div>
         </div>
-        {site.clutchCompanyId && (
-          <div id="clutch-badge" class="flex w-[213px] max-w-full justify-center xl:absolute xl:right-0">
-            <div class="clutch-widget" data-url="https://widget.clutch.co" data-widget-type="14" data-height="50" data-nofollow="true" data-expandifr="true" data-scale="100" data-clutchcompany-id={site.clutchCompanyId}></div>
-            <script is:inline src="https://widget.clutch.co/static/js/widget.js" defer></script>
+        {(site.clutchCompanyId || site.footerBadges?.length) && (
+          <div class="flex flex-col items-center gap-4 md:flex-row xl:absolute xl:right-0">
+            {site.clutchCompanyId && (
+              <div id="clutch-badge" class="flex w-[213px] max-w-full justify-center">
+                <div class="clutch-widget" data-url="https://widget.clutch.co" data-widget-type="14" data-height="50" data-nofollow="true" data-expandifr="true" data-scale="100" data-clutchcompany-id={site.clutchCompanyId}></div>
+                <script is:inline src="https://widget.clutch.co/static/js/widget.js" defer></script>
+              </div>
+            )}
+            {site.footerBadges?.map((b) => {
+              // The badge art includes a soft shadow margin; -my offsets it so the pill lines up with the Clutch widget.
+              const img = <img src={b.src} alt={b.alt} class="h-[72px] w-auto -my-2.5" loading="lazy" />;
+              return b.href ? <a href={b.href} target="_blank" rel="noopener" class="block">{img}</a> : img;
+            })}
           </div>
         )}
       </div>

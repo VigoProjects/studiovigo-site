@@ -38,4 +38,9 @@ analytics:
 # Clutch review badge in the footer (remove to hide).
 clutchCompanyId: "2156962"
 
+# Extra badges shown beside the Clutch reviews badge in the footer. `href` is optional.
+footerBadges:
+  - src: /assets/badges/clutch-guarantee.svg
+    alt: Clutch Guarantee
+
 fontAwesomeKit: 55a5374d7e

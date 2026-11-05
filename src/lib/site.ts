@@ -15,6 +15,7 @@ export interface SiteConfig {
   cookieMessage: string;
   analytics?: { gtm?: string };
   clutchCompanyId?: string;
+  footerBadges?: { src: string; alt: string; href?: string }[];
   fontAwesomeKit?: string;
 }
 
