@@ -36,39 +36,50 @@ const minus = `<svg class="w-2 h-2" width="8" height="9" viewBox="0 0 8 9" fill=
   {all && (
     <div class="pt-14 md:pt-18 lg:pt-31 flex flex-col gap-y-8 md:gap-y-14">
       <SectionIntro eyebrow={all.eyebrow} heading={all.heading} />
-      <div class="py-2 md:py-6 md:px-2 lg:p-0" x-data="{ active: window.innerWidth >= 768 ? 0 : null }"
-        @resize.window.debounce.150ms="if (window.innerWidth >= 768 && active === null) active = 0">
-        <div class="flex flex-col gap-y-2 md:grid md:grid-cols-[auto] xl:grid-cols-[260px_1fr]">
-          <!-- Tabs (desktop) / accordion headers (mobile) -->
-          <div class="flex flex-col gap-y-2 md:flex-row md:overflow-x-auto hide-scrollbar xl:flex-col xl:justify-center" role="tablist">
-            {all.tabs.map((t, i) => (
-              <button type="button" role="tab" :aria-selected={`active === ${i}`} @click={`active = (window.innerWidth < 768 && active === ${i}) ? null : ${i}`}
-                class="flex w-full shrink-0 items-center justify-between py-7 px-6 md:w-auto md:py-5.5 font-bold text-basex md:text-smx cursor-pointer rounded-lgx md:rounded-b-none md:rounded-t-xl xl:rounded-r-none xl:rounded-l-xl bg-gray-200 md:bg-transparent text-gray-500 transition-all duration-400"
-                :class={`active === ${i} ? 'md:!bg-gray-200' : 'md:text-gray-350 md:hover:text-gray-500'`}>
+      <!--
+        Desktop (≥1200px): tabs down the left, panels on the right. All panels share ONE grid cell,
+        so the box is always as tall as the tallest panel and switching is a pure cross-fade (no reflow).
+        Below 1200px: an accordion — each panel sits under its own heading and slides open.
+        Each item wrapper is `xl:contents`, so on desktop its button and panel join the outer grid.
+      -->
+      <div class="py-2 md:py-6 md:px-2 lg:p-0" x-data="{ active: window.innerWidth >= 1200 ? 0 : null }"
+        @resize.window.debounce.150ms="if (window.innerWidth >= 1200 && active === null) active = 0">
+        <div class="flex flex-col gap-y-2 xl:grid xl:grid-cols-[260px_minmax(0,1fr)] xl:gap-y-0">
+          <!-- Desktop panel background (sits behind every panel) -->
+          <div class="hidden xl:block bg-gray-200 rounded-xl" style={`grid-column: 2; grid-row: 1 / span ${all.tabs.length};`} aria-hidden="true"></div>
+          {all.tabs.map((t, i) => (
+            <div class="bg-gray-200 rounded-lgx overflow-hidden xl:contents">
+              <button type="button" id={`svc-tab-${i}`} aria-controls={`svc-panel-${i}`} :aria-expanded={`active === ${i}`}
+                @click={`active = (window.innerWidth < 1200 && active === ${i}) ? null : ${i}`}
+                style={`grid-column: 1; grid-row: ${i + 1};`}
+                class="flex w-full items-center justify-between gap-x-4 py-7 px-6 md:px-8 text-left font-bold text-basex text-gray-500 cursor-pointer xl:self-center xl:py-5.5 xl:text-smx xl:rounded-l-xl transition-colors duration-400"
+                :class={`active === ${i} ? 'xl:bg-gray-200' : 'xl:text-gray-350 xl:hover:text-gray-500'`}>
                 {t.title}
-                <span class="w-6 h-6 flex items-center justify-center rounded-full border-2 border-gray-500 md:hidden" aria-hidden="true">
+                <span class="w-6 h-6 flex flex-none items-center justify-center rounded-full border-2 border-gray-500 xl:hidden" aria-hidden="true">
                   <span x-show={`active !== ${i}`} set:html={plus} /><span x-show={`active === ${i}`} x-cloak set:html={minus} />
                 </span>
               </button>
-            ))}
-          </div>
-          <!-- Panels -->
-          <div class="md:bg-gray-200 md:rounded-b-xl xl:rounded-xl xl:min-h-[420px] xl:flex xl:items-center">
-            {all.tabs.map((t, i) => (
-              <div x-show={`active === ${i}`} x-cloak={i > 0 ? "" : undefined} x-transition.opacity.duration.400ms role="tabpanel"
-                class="mx-2 mb-2 flex flex-col gap-y-2 md:grid md:grid-cols-2 xl:grid-cols-3 md:gap-y-10 md:gap-x-14 md:mx-16 md:my-14 md:h-fit">
-                {t.items.map((f) => (
-                  <div class="bg-white md:bg-transparent px-4 py-6 rounded-md flex flex-col items-center text-center gap-y-4 md:p-0 md:text-left md:items-start md:gap-y-6">
-                    <div class="flex flex-col items-center gap-y-4 md:flex-row md:text-left md:gap-x-4">
-                      {f.icon && <div class="text-white bg-gray-500 clip-rounded-square text-sm w-8.5 h-8.5 flex flex-none justify-center items-center"><i class={`fa-solid fa-${f.icon}`} aria-hidden="true"></i></div>}
-                      <p class="text-smx font-bold text-gray-500">{f.title}</p>
-                    </div>
-                    <div class="text-smx leading-7 text-gray-400"><p>{f.body}</p></div>
+              <div id={`svc-panel-${i}`} role="region" aria-labelledby={`svc-tab-${i}`} :inert={`active !== ${i}`}
+                style={`grid-column: 2; grid-row: 1 / span ${all.tabs.length};`}
+                class="grid transition-[grid-template-rows,opacity,visibility] duration-400 ease-in-out xl:flex xl:items-center xl:z-10"
+                :class={`active === ${i} ? 'grid-rows-[1fr] xl:opacity-100 xl:visible' : 'grid-rows-[0fr] xl:opacity-0 xl:invisible'`}
+                x-cloak={i > 0 ? "" : undefined}>
+                <div class="min-h-0 overflow-hidden xl:overflow-visible xl:w-full">
+                  <div class="mx-2 mb-2 flex flex-col gap-y-2 md:grid md:grid-cols-2 xl:grid-cols-3 md:gap-y-10 md:gap-x-14 md:mx-8 md:mb-8 md:mt-2 xl:m-14">
+                    {t.items.map((f) => (
+                      <div class="bg-white md:bg-transparent px-4 py-6 rounded-md flex flex-col items-center text-center gap-y-4 md:p-0 md:text-left md:items-start md:gap-y-6">
+                        <div class="flex flex-col items-center gap-y-4 md:flex-row md:text-left md:gap-x-4">
+                          {f.icon && <div class="text-white bg-gray-500 clip-rounded-square text-sm w-8.5 h-8.5 flex flex-none justify-center items-center"><i class={`fa-solid fa-${f.icon}`} aria-hidden="true"></i></div>}
+                          <p class="text-smx font-bold text-gray-500">{f.title}</p>
+                        </div>
+                        <div class="text-smx leading-7 text-gray-400"><p>{f.body}</p></div>
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
