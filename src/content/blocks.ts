@@ -86,7 +86,7 @@ export const services = z.object({
   ...common,
   eyebrow: z.string().optional(),
   heading: z.string(),
-  /** Featured service cards. illustration = an image path, e.g. /assets/illustrations/uxui-design.svg */
+  /** Featured service cards. illustration = an image path, e.g. /assets/illustrations/service-uxui-design.svg */
   items: z.array(z.object({ title: z.string(), body: z.string(), href: z.string().optional(), illustration: z.string().optional() })),
   /** Optional tabbed "All services" panel below the cards. */
   all: z.object({

@@ -184,7 +184,7 @@ for (const slug of Object.keys(ILLUSTRATIONS)) {
     eyebrow: text(heroEl.querySelector("p")),
     heading: text(heroEl.querySelector("div.text-3xl")),
     theme,
-    illustration: `/assets/illustrations/${ILLUSTRATIONS[slug]}.svg`,
+    illustration: `/assets/illustrations/service-${ILLUSTRATIONS[slug]}.svg`,
   });
   writeFileSync(`src/content/services/${slug}.mdx`, front + flowToMdx(bodyEl.querySelector(".flex.flex-col.items-center")));
   console.log("service:", slug, theme);
