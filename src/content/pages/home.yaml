@@ -64,7 +64,7 @@ blocks:
     items:
       - { title: Product Strategy, body: Defining direction. Aligning teams. Delivering clarity and confidence., href: /product-strategy, illustration: /assets/illustrations/product-strategy.svg }
       - { title: Prototyping, body: The power of expanding a vision and aligning thoughts., href: /discovery-prototyping, illustration: /assets/illustrations/prototyping.svg }
-      - { title: UX & UI Design, body: Turning complex challenges into clear, elegant experiences., href: /uxui-design, illustration: /assets/illustrations/uxui-design.svg }
+      - { title: UX & UI Design, body: "Turning complex challenges into clear, elegant experiences.", href: /uxui-design, illustration: /assets/illustrations/uxui-design.svg }
     all:
       eyebrow: All Services
       heading: A complete range of services to assist in the entire digital product lifecycle.
