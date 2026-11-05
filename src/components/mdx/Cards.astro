@@ -1,0 +1,10 @@
+---
+/**
+ * Icon cards. Usage in .mdx:
+ *   <Cards heading="Optional" items={[{ icon: "pen-paintbrush", title: "In scope", body: "Markdown text" }]} />
+ * icon = a Font Awesome icon name (fontawesome.com/icons), without the "fa-" prefix.
+ */
+import CardGrid from "../CardGrid.astro";
+interface Props { heading?: string; body?: string; items: { title: string; body: string; icon?: string }[]; numbered?: boolean; columns?: 2 | 3 | 4 }
+---
+<div class="mx-auto w-full max-w-6xl px-4 md:px-8"><CardGrid {...Astro.props} /></div>

@@ -1,0 +1,18 @@
+---
+/**
+ * Wide image in a glowing frame. Usage in .mdx:
+ *   <Figure src="/assets/my-screenshot.png" alt="What the image shows" caption="Optional caption" />
+ */
+import GlowCard from "../GlowCard.astro";
+import type { Gradient } from "../../lib/gradients";
+interface Props { src: string; alt?: string; caption?: string; gradient?: Gradient }
+const { src, alt = "", caption, gradient = "coral-purple" } = Astro.props;
+---
+<figure class="md:px-22 xl:px-30 container px-2">
+  <div class="flex">
+    <GlowCard gradient={gradient} class="mx-auto" innerClass="">
+      <img src={src} alt={alt} class="object-cover" loading="lazy" />
+    </GlowCard>
+  </div>
+  {caption && <figcaption class="mt-4 text-center text-sm text-gray-400">{caption}</figcaption>}
+</figure>

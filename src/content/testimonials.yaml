@@ -1,9 +1,10 @@
-# Shared testimonials. Each needs a unique id.
+# Shared testimonials. Each needs a unique id. `featured: true` shows one large, first.
 - id: lovegunn
   quote: I Just wanted to say a massive thank you to you and the team for your hard work this year! The site is looking amazing, and the SEO/load speeds are very impressive!
   name: Adam Glazer-Creed
   role: Client Director - LoveGunn
   logo: /assets/lovegunn-logo.jpeg
+  featured: true
 - id: stakk
   quote: Vigo's work surpassed the client's expectations. The platform's UI/UX design contributed to higher user engagement and satisfaction, increasing conversions and user loyalty as well. Vigo had effective communication with the client, provided timely updates, and delivered work on time and on budget.
   name: Jack Tyson

@@ -1,0 +1,17 @@
+---
+/** Hero for case studies and insights: coloured band with the title, plus a half-height image on desktop. */
+interface Props { title: string; color?: string; textColor?: string; image?: string }
+const { title, color = "#000000", textColor = "#ffffff", image } = Astro.props;
+---
+<div class="relative overflow-hidden w-screen">
+  <div class="relative xl:h-[50vh]" style={`background-color: ${color}`}>
+    <div class="container relative z-10 pt-32 pb-22 md:pt-44 md:pb-32 xl:py-0 xl:h-full text-center flex items-center justify-center">
+      <h1 class="font-bold text-2xlx leading-tight lg:text-3xlx xl:text-4xlx max-w-[70%] xl:max-w-[60%]" style={`color: ${textColor};`}>{title}</h1>
+    </div>
+  </div>
+  {image && (
+    <div class="hidden xl:block xl:h-[50vh]">
+      <img src={image} alt="" class="w-full h-full object-cover" />
+    </div>
+  )}
+</div>

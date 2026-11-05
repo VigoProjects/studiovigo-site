@@ -2,22 +2,25 @@
 import type { z } from "astro/zod";
 import type { caseStudies } from "../../content/blocks";
 import { getCollection } from "astro:content";
-import Section from "../Section.astro";
-import Eyebrow from "../Eyebrow.astro";
-import CaseStudyCard from "../CaseStudyCard.astro";
-import Testimonials from "./Testimonials.astro";
+import SectionIntro from "../SectionIntro.astro";
+import FeaturedCaseStudyCard from "../FeaturedCaseStudyCard.astro";
+import Testimonials from "../Testimonials.astro";
 type Props = z.infer<typeof caseStudies>;
-const { eyebrow, heading, featured, showTestimonials, id, background } = Astro.props;
-const all = (await getCollection("caseStudies")).sort((a, b) => a.data.order - b.data.order);
-const items = featured ? featured.map((s) => all.find((e) => e.id === s)).filter((e) => !!e) : all;
+const { eyebrow, heading, featured, showTestimonials, id } = Astro.props;
+const all = await getCollection("caseStudies", (e) => !e.data.draft);
+const items = featured.map((slug) => {
+  const e = all.find((c) => c.id === slug);
+  if (!e) throw new Error(`caseStudies block: no case study called "${slug}"`);
+  if (!e.data.featuredCard) throw new Error(`caseStudies block: "${slug}" has no featuredCard art in its front matter`);
+  return e;
+});
 ---
-<Section id={id} background={background}>
-  <div class="flex flex-col gap-y-4">
-    {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-    <h2 class="max-w-3xl text-3xl font-bold text-gray-500 md:text-4xl">{heading}</h2>
+<div id={id} class="bg-gray-200 scroll-mt-20">
+  <div class="container py-16 md:py-18 lg:py-31 flex flex-col gap-y-14 md:gap-y-20">
+    <SectionIntro {eyebrow} {heading} />
+    <div class="flex flex-col gap-y-4 lg:flex-row lg:gap-x-10 md:px-14 lg:px-0">
+      {items.map((e, i) => <FeaturedCaseStudyCard entry={e} index={i} />)}
+    </div>
+    {showTestimonials && <Testimonials />}
   </div>
-  <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-    {items.map((e) => <CaseStudyCard entry={e} />)}
-  </div>
-  {showTestimonials && <div class="mt-14"><Testimonials type="testimonials" background="white" embedded /></div>}
-</Section>
+</div>

@@ -1,13 +1,43 @@
 ---
-/** Every block page except home: src/content/pages/<slug>.yaml → /<slug> */
-import { getCollection } from "astro:content";
+/**
+ * Every top-level page except home:
+ *   src/content/pages/<slug>.yaml    → block-built landing pages
+ *   src/content/services/<slug>.mdx  → long-form service pages
+ */
+import { getCollection, render, type CollectionEntry } from "astro:content";
 import Base from "../layouts/Base.astro";
 import BlockRenderer from "../components/BlockRenderer.astro";
+import ServiceHero from "../components/article/ServiceHero.astro";
+import ArticleFlow from "../components/article/ArticleFlow.astro";
+import { mdxComponents } from "../components/mdx";
+
+type P = { kind: "page"; entry: CollectionEntry<"pages"> } | { kind: "service"; entry: CollectionEntry<"services"> };
 
 export async function getStaticPaths() {
   const pages = await getCollection("pages", (p) => p.id !== "home");
-  return pages.map((page) => ({ params: { slug: page.id }, props: { page } }));
+  const services = await getCollection("services");
+  const seen = new Set<string>();
+  const check = (id: string) => { if (seen.has(id)) throw new Error(`Two pages want the URL /${id}`); seen.add(id); return id; };
+  return [
+    ...pages.map((entry) => ({ params: { slug: check(entry.id) }, props: { kind: "page", entry } as P })),
+    ...services.map((entry) => ({ params: { slug: check(entry.id) }, props: { kind: "service", entry } as P })),
+  ];
 }
-const { title, description, ogImage, blocks } = Astro.props.page.data;
+const props = Astro.props as P;
 ---
-<Base {title} {description} {ogImage}><BlockRenderer {blocks} /></Base>
+{props.kind === "page" ? (
+  <Base title={props.entry.data.title} metaTitle={props.entry.data.metaTitle} description={props.entry.data.description} ogImage={props.entry.data.ogImage}>
+    <BlockRenderer blocks={props.entry.data.blocks} />
+  </Base>
+) : (
+  await (async () => {
+    const d = props.entry.data;
+    const { Content } = await render(props.entry);
+    return (
+      <Base title={d.title} metaTitle={d.title} description={d.description} ogImage={d.ogImage}>
+        <ServiceHero eyebrow={d.eyebrow} heading={d.heading} illustration={d.illustration} theme={d.theme} />
+        <ArticleFlow theme={d.theme}><Content components={mdxComponents} /></ArticleFlow>
+      </Base>
+    );
+  })()
+)}

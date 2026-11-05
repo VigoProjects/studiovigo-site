@@ -2,23 +2,19 @@
 import type { z } from "astro/zod";
 import type { insights } from "../../content/blocks";
 import { getCollection } from "astro:content";
-import Section from "../Section.astro";
-import Eyebrow from "../Eyebrow.astro";
 import Button from "../Button.astro";
-import InsightCard from "../InsightCard.astro";
+import ListingCard from "../ListingCard.astro";
 type Props = z.infer<typeof insights>;
-const { eyebrow, heading, limit, id, background } = Astro.props;
+const { eyebrow, heading, limit, id } = Astro.props;
 const posts = (await getCollection("insights", (e) => !e.data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, limit);
 ---
-<Section id={id} background={background} class="flex flex-col gap-y-14 md:gap-y-20">
-  <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-    <div class="flex flex-col gap-y-4">
-      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-      <h2 class="text-3xl font-bold text-gray-500 md:text-4xl">{heading}</h2>
-    </div>
-    <Button href="/insights" variant="light">All Insights</Button>
+<div id={id} class="section-spacing container py-14 md:py-18 lg:py-31 flex flex-col gap-y-14 md:gap-y-20">
+  <div class="flex flex-col gap-y-6 md:gap-y-8 md:max-w-[616px] md:mx-auto items-center text-center text-gray-500">
+    {eyebrow && <h2 class="uppercase text-xsx">{eyebrow}</h2>}
+    <div class="text-3xl font-bold leading-snug mx-3"><p>{heading}</p></div>
+    <div class="flex justify-center gap-x-4 xl:justify-start"><Button href="/insights" variant="dark-outline" size="lg">All Insights</Button></div>
   </div>
-  <div class="grid gap-10 md:grid-cols-3">{posts.map((p) => <InsightCard entry={p} />)}</div>
-</Section>
+  <div class="grid lg:grid-cols-3 gap-6 xl:gap-12 xl:w-fit xl:mx-auto">{posts.map((p, i) => <ListingCard href={`/insights/${p.id}`} title={p.data.title} image={p.data.listingImage ?? p.data.heroImage} author={p.data.author} date={p.data.date} index={i} />)}</div>
+</div>

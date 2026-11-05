@@ -1,0 +1,20 @@
+---
+/** Hero for service pages: themed gradient wash, illustration, eyebrow and statement. */
+import { themes, type Theme } from "../../lib/themes";
+interface Props { eyebrow: string; heading: string; illustration?: string; theme: Theme }
+const { eyebrow, heading, illustration, theme } = Astro.props;
+const t = themes[theme];
+---
+<div class="relative group overflow-hidden bg-white z-10">
+  <div class:list={["absolute inset-0 -top-5 -z-10 h-25 opacity-100 blur-2xl", t.gradient]}></div>
+  <div class:list={["absolute inset-0 -z-10 h-50 opacity-20 blur-4xl", t.gradient]}></div>
+  <div class="container py-32 md:py-44 xl:py-32 text-center items-center flex flex-col gap-y-8.5 md:gap-y-6">
+    <div class="flex flex-col gap-y-8 md:gap-y-4 items-center font-bold text-gray-500 max-w-[520px] xl:max-w-[600px]">
+      {illustration && <div class="w-48 h-36 md:w-[232px] md:h-44 md:mb-4 xl:mb-0"><img src={illustration} alt="" class="w-full h-full" /></div>}
+      <h1 class="text-lg2x md:text-xlx xl:mb-2">{eyebrow}</h1>
+      <p class="text-3xl md:text-3xlx xl:text-4xlx">{heading}</p>
+    </div>
+  </div>
+  <img src={`/permanent-assets/${t.folder}/hero-1.png`} alt="" class="absolute bottom-0 left-0 -z-10 w-[132px] md:w-[153px] xl:w-[200px]" />
+  <img src={`/permanent-assets/${t.folder}/hero-2.png`} alt="" class="hidden md:block absolute right-0 -z-10 md:w-25 xl:w-25 md:bottom-16 xl:bottom-52" />
+</div>

@@ -5,9 +5,12 @@ import Hero from "./blocks/Hero.astro";
 import Logos from "./blocks/Logos.astro";
 import Stats from "./blocks/Stats.astro";
 import Prose from "./blocks/Prose.astro";
-import Steps from "./blocks/Steps.astro";
+import Cards from "./blocks/Cards.astro";
+import PageHeader from "./blocks/PageHeader.astro";
+import ContactHero from "./blocks/ContactHero.astro";
 import Services from "./blocks/Services.astro";
 import List from "./blocks/List.astro";
+import Tabs from "./blocks/Tabs.astro";
 import CaseStudies from "./blocks/CaseStudies.astro";
 import Testimonials from "./blocks/Testimonials.astro";
 import ContactForm from "./blocks/ContactForm.astro";
@@ -16,8 +19,8 @@ import Insights from "./blocks/Insights.astro";
 import Cta from "./blocks/Cta.astro";
 
 const components = {
-  hero: Hero, logos: Logos, stats: Stats, prose: Prose, steps: Steps,
-  services: Services, list: List, caseStudies: CaseStudies, testimonials: Testimonials,
+  hero: Hero, pageHeader: PageHeader, contactHero: ContactHero, logos: Logos, stats: Stats, prose: Prose, cards: Cards,
+  services: Services, tabs: Tabs, list: List, caseStudies: CaseStudies, testimonials: Testimonials,
   contactForm: ContactForm, faq: Faq, insights: Insights, cta: Cta,
 } as const;
 

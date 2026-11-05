@@ -1,28 +1,37 @@
 ---
+/** Accordion FAQ (also emits FAQPage structured data for search engines). */
 import type { z } from "astro/zod";
 import type { faq } from "../../content/blocks";
-import Section from "../Section.astro";
 import { md } from "../../lib/site";
 type Props = z.infer<typeof faq>;
-const { heading, items, id, background } = Astro.props;
+const { heading, items, id } = Astro.props;
+const uid = (id ?? "faq") + "-";
 const schema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: items.map((i) => ({ "@type": "Question", name: i.q, acceptedAnswer: { "@type": "Answer", text: i.a } })),
 };
+const plus = `<svg class="w-2 h-2" width="8" height="9" viewBox="0 0 8 9" fill="none"><path d="M4 1.5V7.5M7 4.5L1 4.5" stroke="#333333" stroke-width="2" stroke-linecap="round" /></svg>`;
+const minus = `<svg class="w-2 h-2" width="8" height="9" viewBox="0 0 8 9" fill="none"><path d="M7 4.5L1 4.5" stroke="#333333" stroke-width="2" stroke-linecap="round" /></svg>`;
 ---
-<Section id={id} background={background} class="flex flex-col gap-y-10 md:gap-y-14">
-  <h2 class="text-3xl font-bold text-gray-500 md:text-4xl">{heading}</h2>
-  <div class="divide-y divide-gray-250 border-y border-gray-250">
-    {items.map((i) => (
-      <details class="group py-6">
-        <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lgx font-bold text-gray-500">
-          {i.q}
-          <span class="text-2xl transition-transform group-open:rotate-45" aria-hidden="true">+</span>
-        </summary>
-        <div class="prose prose-gray mt-4 max-w-3xl text-smx text-gray-400" set:html={md(i.a)} />
-      </details>
+<div id={id} class="section-spacing container py-14 md:py-18 lg:py-31 flex flex-col gap-y-10 md:gap-y-14 scroll-mt-20">
+  <h2 class="text-3xl font-bold leading-snug text-gray-500 text-center max-w-[506px] md:max-w-[674px] xl:max-w-[828px] mx-auto">{heading}</h2>
+  <div class="max-w-[768px] w-full mx-auto flex flex-col gap-y-2">
+    {items.map((item, i) => (
+      <div x-data="{ open: false }" class="bg-gray-200 rounded-lgx overflow-hidden">
+        <h3 class="m-0">
+          <button type="button" class="flex w-full items-center justify-between gap-x-4 text-left py-6 px-6 md:px-8 font-bold text-gray-500 text-basex md:text-xlx cursor-pointer" :aria-expanded="open" aria-controls={`${uid}${i}`} x-on:click="open = !open">
+            {item.q}
+            <span class="transition w-6 h-6 flex-none flex items-center justify-center rounded-full border-2 border-gray-500" aria-hidden="true">
+              <span x-show="!open" set:html={plus} /><span x-show="open" x-cloak set:html={minus} />
+            </span>
+          </button>
+        </h3>
+        <div id={`${uid}${i}`} x-show="open" x-collapse x-cloak role="region">
+          <div class="rich-text px-6 pb-6 md:px-8 md:pb-8" set:html={md(item.a)} />
+        </div>
+      </div>
     ))}
   </div>
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-</Section>
+</div>

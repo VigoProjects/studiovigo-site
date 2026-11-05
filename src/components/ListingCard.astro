@@ -1,0 +1,38 @@
+---
+/** Card used on the Insights and Case Studies listings (and the homepage insights strip). */
+import { gradientFor } from "../lib/gradients";
+interface Props { href: string; title: string; image?: string; tags?: string[]; author?: string; date?: Date; index?: number }
+const { href, title, image, tags = [], author, date, index = 0 } = Astro.props;
+const g = gradientFor(index);
+const when = date?.toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" });
+---
+<a class="group block lg:max-w-80" href={href}>
+  <div class="transition-all duration-500 ease-out relative transform-gpu w-full h-full">
+    <div class="transition-opacity duration-500 ease-out opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto">
+      <div class={`absolute inset-0 -z-10 w-full h-full opacity-10 blur-sm card-gradient-${g}`}></div>
+      <div class={`absolute inset-0 -z-10 w-full h-full opacity-50 scale-90 blur-2xl card-gradient-${g}`}></div>
+    </div>
+    <div class="rounded-lgx relative w-full h-full bg-white border-1 border-gray-250 flex flex-col md:flex-row lg:flex-col">
+      {image && <img src={image} alt="" loading="lazy" class="rounded-t-lgx md:rounded-t-none md:rounded-l-lgx lg:rounded-t-lgx lg:rounded-bl-none w-full h-44 shrink-0 md:w-[40%] md:h-auto md:min-h-48 md:self-stretch lg:w-full lg:h-44 lg:min-h-0 object-cover" />}
+      <div class="rounded-lgx min-w-0 flex-1 relative">
+        <div class="flex flex-col gap-y-3 px-4 py-8 md:px-11.5 md:py-13 lg:p-6 md:flex-row lg:flex-col md:gap-x-7 lg:gap-y-6 h-full">
+          <div class="flex flex-col justify-between md:text-left gap-y-7 md:gap-y-4 h-full">
+            <div class="flex flex-col gap-y-2">
+              {tags.length > 0 && <div class="flex flex-wrap gap-1.5">{tags.map((t) => <p class="py-1 px-3 text-xs font-medium text-white bg-gray-350 rounded-full">{t}</p>)}</div>}
+              {author && (
+                <div class="flex flex-wrap items-center gap-y-2">
+                  <p class="text-sm font-medium text-gray-500 whitespace-nowrap">{author}</p>
+                  {when && <><span class="mx-2 text-gray-350 font-light">|</span><p class="text-sm text-gray-500">{when}</p></>}
+                </div>
+              )}
+              <p class="text-xlx font-bold text-gray-500">{title}</p>
+            </div>
+            <svg class="transition-transform self-end shrink-0 duration-500 ease-in-out transform will-change-transform group-hover:translate-x-1" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M1.59961 6H10.5996M10.5996 6L5.817 1M10.5996 6L5.817 11" stroke="#333" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>

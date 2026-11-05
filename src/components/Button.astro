@@ -1,18 +1,21 @@
 ---
-/** Pill button used across the site. variant: dark (default) | light */
-interface Props { href: string; variant?: "dark" | "light"; class?: string }
-const { href, variant = "dark", class: cls = "" } = Astro.props;
-const styles = {
-  dark: "bg-gray-500 text-white hover:bg-gray-600",
-  light: "bg-white text-gray-500 ring-1 ring-gray-500 hover:bg-gray-100",
+/**
+ * Pill button, matching the live site.
+ * variant: "dark" (default, white ring — use on dark/gradient backgrounds),
+ *          "dark-outline" (grey ring — use on white), "light" (white pill).
+ * size: "md" (default) | "lg"
+ */
+interface Props { href?: string; variant?: "dark" | "dark-outline" | "light"; size?: "md" | "lg"; class?: string; type?: "button" | "submit"; target?: string }
+const { href, variant = "dark", size = "md", class: cls = "", type, target = "_self" } = Astro.props;
+const base = "flex items-center gap-x-3 w-fit rounded-full text-sm leading-snug font-medium transition-[background-color,color,box-shadow] duration-500 ease-in-out group cursor-pointer";
+const variants = {
+  dark: "bg-gray-500 text-white shadow-btn-white-md hover:shadow-btn-white-lg",
+  "dark-outline": "bg-gray-500 text-white shadow-btn-gray-md hover:shadow-btn-gray-lg",
+  light: "bg-white text-gray-500 shadow-btn-white-md hover:shadow-btn-white-lg",
 };
+const sizes = { md: "px-5 py-2.25", lg: "px-6 py-3" };
+const classes = [base, variants[variant], sizes[size], cls];
 ---
-<a
-  href={href}
-  class:list={[
-    "inline-flex w-fit items-center gap-x-3 rounded-full px-5 py-2.25 text-sm leading-snug font-medium",
-    "shadow-[0_0_0_4px_rgb(255_255_255/0.6)] transition-[background-color,color,box-shadow] duration-500 ease-in-out hover:shadow-[0_0_0_6px_rgb(255_255_255/0.8)]",
-    styles[variant],
-    cls,
-  ]}
-><slot /></a>
+{href
+  ? <a href={href} target={target} class:list={classes}><slot /></a>
+  : <button type={type ?? "button"} class:list={classes}><slot /></button>}

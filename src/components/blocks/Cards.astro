@@ -1,0 +1,10 @@
+---
+import type { z } from "astro/zod";
+import type { cards } from "../../content/blocks";
+import CardGrid from "../CardGrid.astro";
+type Props = z.infer<typeof cards>;
+const { heading, body, items, numbered, columns, id, background } = Astro.props;
+---
+<div id={id} class:list={["section-spacing py-14 md:py-18 lg:py-31 scroll-mt-20", background === "grey" && "bg-gray-200"]}>
+  <div class="container"><CardGrid {heading} {body} {items} {numbered} {columns} /></div>
+</div>

@@ -25,10 +25,13 @@ export const hero = z.object({
   ...common,
   eyebrow: z.string().optional(),
   heading: z.string(),
-  /** Second line of the heading, shown in the accent gradient colour. */
+  /** Part of the heading shown in the animated gradient colour. */
   highlight: z.string().optional(),
+  /** Optional text after the highlight. */
+  after: z.string().optional(),
   body: z.string().optional(),
   cta: link.optional(),
+  secondaryCta: link.optional(),
   video: z.string().optional(),
   image: image.optional(),
 });
@@ -43,7 +46,7 @@ export const logos = z.object({
 export const stats = z.object({
   type: z.literal("stats"),
   ...common,
-  heading: z.string(),
+  heading: z.string().optional(),
   body: z.string().optional(),
   items: z.array(z.object({ value: z.string(), label: z.string() })),
 });
@@ -58,11 +61,24 @@ export const prose = z.object({
   image: image.optional(),
 });
 
-export const steps = z.object({
-  type: z.literal("steps"),
+/** Glowing icon cards (process steps, benefits…). icon = Font Awesome name, e.g. "magnifying-glass". */
+export const cards = z.object({
+  type: z.literal("cards"),
   ...common,
+  heading: z.string().optional(),
+  body: z.string().optional(),
+  numbered: z.boolean().default(false),
+  columns: z.union([z.literal(2), z.literal(3), z.literal(4)]).default(4),
+  items: z.array(z.object({ title: z.string(), body: z.string(), icon: z.string().optional() })), // body is Markdown
+});
+
+/** Small centred intro (eyebrow + statement) with a soft gradient wash — used to open listing pages. */
+export const pageHeader = z.object({
+  type: z.literal("pageHeader"),
+  ...common,
+  eyebrow: z.string(),
+  /** Markdown (links allowed). */
   heading: z.string(),
-  items: z.array(z.object({ title: z.string(), body: z.string() })), // body is Markdown
 });
 
 export const services = z.object({
@@ -70,11 +86,26 @@ export const services = z.object({
   ...common,
   eyebrow: z.string().optional(),
   heading: z.string(),
-  items: z.array(z.object({ title: z.string(), body: z.string(), href: z.string().optional() })),
-  /** Secondary "All services" list. */
-  allHeading: z.string().optional(),
-  allBody: z.string().optional(),
-  allItems: z.array(z.string()).optional(),
+  /** Featured service cards. illustration = an image path, e.g. /assets/illustrations/uxui-design.svg */
+  items: z.array(z.object({ title: z.string(), body: z.string(), href: z.string().optional(), illustration: z.string().optional() })),
+  /** Optional tabbed "All services" panel below the cards. */
+  all: z.object({
+    eyebrow: z.string().optional(),
+    heading: z.string(),
+    tabs: z.array(z.object({
+      title: z.string(),
+      items: z.array(z.object({ title: z.string(), body: z.string(), icon: z.string().optional() })),
+    })),
+  }).optional(),
+});
+
+/** Titled panels: side tabs on desktop, accordion on mobile. body is Markdown. */
+export const tabs = z.object({
+  type: z.literal("tabs"),
+  ...common,
+  eyebrow: z.string().optional(),
+  heading: z.string(),
+  items: z.array(z.object({ title: z.string(), body: z.string() })),
 });
 
 export const list = z.object({
@@ -91,14 +122,23 @@ export const caseStudies = z.object({
   ...common,
   eyebrow: z.string().optional(),
   heading: z.string(),
-  /** Slugs to feature, in order. Omit to show all. */
-  featured: z.array(z.string()).optional(),
-  showTestimonials: z.boolean().default(false),
+  /** Case study slugs to feature as large cards, in order (each needs `featuredCard` art). */
+  featured: z.array(z.string()),
+  showTestimonials: z.boolean().default(true),
 });
 
 export const testimonials = z.object({
   type: z.literal("testimonials"),
   ...common,
+});
+
+/** Contact page opener: greeting on the left, contact methods on the right. icon = Font Awesome name. */
+export const contactHero = z.object({
+  type: z.literal("contactHero"),
+  ...common,
+  /** Each line becomes its own paragraph. */
+  greeting: z.array(z.string()),
+  methods: z.array(z.object({ icon: z.string(), label: z.string(), href: z.string() })),
 });
 
 export const contactForm = z.object({
@@ -133,7 +173,7 @@ export const cta = z.object({
 });
 
 export const block = z.discriminatedUnion("type", [
-  hero, logos, stats, prose, steps, services, list, caseStudies,
+  hero, pageHeader, contactHero, logos, stats, prose, cards, services, tabs, list, caseStudies,
   testimonials, contactForm, faq, insights, cta,
 ]);
 

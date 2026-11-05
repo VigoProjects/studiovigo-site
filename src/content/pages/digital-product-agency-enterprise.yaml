@@ -1,0 +1,185 @@
+title: Enterprise Digital Product Agency UK
+metaTitle: Enterprise Digital Product Agency UK
+description: "Senior-led UK digital product agency for enterprise rebuilds, legacy UI uplifts and data-heavy platforms. Benchmark: time on task down 42% in four weeks."
+blocks:
+  - type: hero
+    eyebrow: Enterprise Digital Product Agency
+    heading: Complex problems,
+    highlight: crafted solutions.
+    body: "Enterprise briefs come with more stakeholders, harder technical constraints and a higher cost of getting it wrong. Vigo is a digital product agency built for that work: senior-led, structured and accountable from discovery through to post-launch."
+    cta:
+      label: Book an initial call
+      href: /contact
+    video: /assets/morphing-graphic-%281080%29.mp4
+  - type: logos
+    heading: Trusted worldwide
+    items:
+      - src: /assets/logo1.png
+        alt: ""
+      - src: /assets/logo2.png
+        alt: ""
+      - src: /assets/logo3.png
+        alt: ""
+      - src: /assets/logo4.png
+        alt: ""
+      - src: /assets/logo5.png
+        alt: ""
+      - src: /assets/logo6.png
+        alt: ""
+      - src: /assets/logo-odi-compact.png
+        alt: ""
+      - src: /assets/bloomberg-logo.webp
+        alt: ""
+  - type: stats
+    heading: Proof from a live enterprise platform
+    body: Benchmark Estimating’s platform is used for infrastructure cost estimation across the UK, Australia and New Zealand. We modernised it in four weeks without touching its architecture, then measured the result against the old interface.
+    items:
+      - value: 4wks
+        label: from kickoff to shipped
+      - value: 42%
+        label: less time on task
+      - value: "19.1"
+        label: fewer clicks per core journey on average
+      - value: 98%
+        label: of users preferred the new interface
+  - type: prose
+    eyebrow: Meet Vigo
+    body: |-
+      We’re a digital product agency that works with ambitious organisations on complex product challenges: platform rebuilds, legacy modernisation, multi-system redesigns, new product launches and multi-year transformation programmes. Strategy, [UX and UI design](/uxui-design) and front-end engineering sit in one accountable team, so you have one partner across the whole lifecycle instead of a chain of handoffs.
+
+      Large consultancies bring scale but rarely the hands-on product craft that complex builds need. Small studios bring design talent but often lack the governance, technical depth or stakeholder management that enterprise delivery requires. Vigo sits between the two: senior people doing the work, with the structure to ship it.
+    image:
+      src: /assets/gemini_generated_image_oc7533oc7533oc75.png
+      alt: ""
+  - type: prose
+    eyebrow: What enterprise clients actually need from a digital product partner
+    body: |-
+      Most enterprise product failures aren’t design failures. They’re process failures: thin discovery, misaligned stakeholders, friction between strategy and engineering, or a launch that ends the agency relationship when it should start the next phase.
+
+      When you’re evaluating a partner at this scale, these are the criteria that matter, and how we meet them.
+
+      -   **Discovery rigour.** Do they research users, interview stakeholders and map constraints before design starts? _For_ [Benchmark](/case-studies/legacy-application-ui-uplift)_, we ran extended observation sessions with estimating engineers doing real tasks before redesigning a single screen._
+          
+      -   **Complexity handling.** Can they show work on data-heavy, regulated or multi-system products? A portfolio of marketing sites tells you little. [_Benchmark’s engineers work with thousands of cost line items on multi-billion capital projects._](/case-studies/legacy-application-ui-uplift)
+          
+      -   **Integrated delivery.** Do strategy, design and engineering work together from day one? _On Benchmark, a front-end developer sat in every design conversation, so nothing unbuildable reached handover._
+          
+      -   **Governance and accountability.** How are scope, milestones and change managed? _Benchmark’s scope was written down on day one, with what was in and out of scope agreed before design began._
+          
+      -   **Post-launch engagement.** Does the agency stay to measure and improve? _We benchmark new interfaces against the old ones on time on task, clicks and user preference._
+    image:
+      src: /assets/gemini_generated_image_ggvx4sggvx4sggvx.png
+      alt: ""
+  - type: tabs
+    id: about
+    eyebrow: How We Work With Enterprise Clients
+    heading: Four stages, each with a defined output and one team accountable from start to finish.
+    items:
+      - title: "Stage 1: Discover and Define"
+        body: |-
+          Every engagement begins with structured discovery. We run stakeholder interviews, user research, technical constraint mapping, and commercial alignment sessions before a single design decision is made. This stage surfaces the real brief, which is almost always different from the stated brief, and establishes the foundations that prevent expensive rework later.
+
+          For enterprise clients, [discovery and prototyping](/discovery-prototyping) is not a formality. It is the highest-leverage investment in the engagement.
+      - title: "Stage 2: Create and Innovate"
+        body: With a validated brief and defined constraints, we move into design and prototyping. Our UX/UI design practice works directly alongside product strategy and front-end engineering, so design decisions are informed by technical realities from day one. We produce [high-fidelity UX/UI design](/uxui-design) that is built to be implemented, not just presented.
+      - title: "Stage 3: Launch"
+        body: We manage the delivery cycle with the same governance discipline we apply to discovery. Milestones are tracked, change requests are documented, and the engineering team builds in React.js against a defined design system. The output is a product that ships on time and holds up under scrutiny from procurement, legal, and the board.
+      - title: "Stage 4: Monitor and Optimise"
+        body: Launch is not the end of the engagement. We remain involved post-launch to monitor performance, identify optimisation opportunities, and evolve the product in response to real user behaviour. This is where the long-term value of an enterprise partnership is realised.
+  - type: prose
+    eyebrow: Where we deliver
+    body: |-
+      The common thread across our enterprise work is complexity, whether it sits in the data, the organisation or the technology.
+
+      **Legacy platform modernisation.** Interface, data table and navigation uplifts for mature platforms, delivered inside your existing codebase. → [Benchmark case study](/case-studies/legacy-application-ui-uplift)
+
+      **Enterprise platform rebuilds.** Discovery, UX redesign, design systems and React front-end builds for platforms that have outgrown their first version. → [Benchmark case study](/case-studies/legacy-application-ui-uplift)
+
+      **Complex data products.** Dashboards, analytics tools and data-dense interfaces where information architecture matters as much as visual design. → [Why enterprise dashboards fail](/insights/enterprise-dashboard-ux-fail)
+
+      **Regulated environments.** Clinical and compliance-sensitive products where accessibility, documentation and audit trails are part of the brief. → Axivera case study
+
+      **Multi-year transformation.** Product strategy, phased roadmaps and embedded delivery, with governance that fits your processes rather than sitting on top of them. → [Enterprise platform transformation roadmap](/insights/enterprise-platform-transformation-roadmap)
+
+      **Solution design.** Technical and UX solution design for teams evaluating new platforms, integrations or internal tools.
+
+      Our work covers infrastructure cost estimating, carbon reporting under PAS 2080, clinical trials software and complex e-commerce. The [Benchmark Estimating legacy UI uplift](/case-studies/legacy-application-ui-uplift) and the [Axivera clinical trials platform](/case-studies/axivera) show the regulated, data-intensive work we’re built for. The [Catchbox e-commerce redesign](/case-studies/catchbox) shows how we handle international, multi-product ecosystems.
+    image:
+      src: /assets/gemini_generated_image_f3m9u3f3m9u3f3m9.png
+      alt: ""
+  - type: services
+    id: services
+    eyebrow: Design services
+    heading: Three phases to take your digital product from idea to reality.
+    items:
+      - title: Prototyping
+        body: The power of expanding a vision and aligning thoughts.
+        href: /discovery-prototyping
+        illustration: /assets/illustrations/prototyping.svg
+      - title: UX & UI Design
+        body: Turning complex challenges into clear, elegant experiences.
+        href: /uxui-design
+        illustration: /assets/illustrations/uxui-design.svg
+      - title: Product Strategy
+        body: Defining direction. Aligning teams. Delivering clarity and confidence.
+        href: /product-strategy
+        illustration: /assets/illustrations/product-strategy.svg
+  - type: prose
+    body: |-
+      We scope every engagement individually, but most fall into one of these shapes.
+
+      -   **UI uplift on an existing platform:** around 4 weeks, with no architecture changes.
+          
+      -   **Discovery and design for one product area:** typically 8 to 12 weeks.
+          
+      -   **Full platform rebuild, discovery to launch:** typically 6 to 12 months.
+          
+      -   **Multi-year transformation:** rolling, with phased milestones and budgets.
+          
+
+      Read our guide to [enterprise MVP agency pricing](/insights/enterprise-mvp-agency-pricing)
+    image:
+      src: /assets/gemini_generated_image_f3m9u3f3m9u3f3m9.png
+      alt: ""
+  - type: caseStudies
+    id: case-studies
+    eyebrow: Our Work
+    heading: Trusted by enterprise companies across UK and Europe to craft meaningful and scalable digital products.
+    featured:
+      - benchmark_carbon
+      - catchbox
+      - axivera
+    showTestimonials: true
+  - type: contactForm
+    heading: Let us know how we can help...
+    body: Every project is unique, but they all start with that important first step.
+  - type: prose
+    eyebrow: Further reading
+    body: |-
+      If you're in the early stages of evaluating partners or building an internal case for a major digital programme, these are worth your time:
+
+      [Why digital transformations fail](/insights/why-do-digital-transformations-fail): The patterns that derail large-scale programmes, and what separates the ones that deliver from the ones that don't.
+
+      [Change management in enterprise digital product](/insights/change-management-digital-product-enterprise): Why the human side of a digital programme is as important as the technical one, and how to plan for it from the start.
+
+      [Data-informed design](/insights/data-informed-design): How the best product teams use data to make better design decisions, without letting it crowd out judgement.
+    image:
+      src: /assets/vigo_reading.png
+      alt: ""
+  - type: faq
+    heading: Your questions answered
+    items:
+      - q: What does an enterprise digital product agency do differently from a design agency?
+        a: "A design agency usually handles one phase, such as a rebrand, a website or a set of wireframes, and hands over when it’s done. An enterprise digital product agency covers the full lifecycle: discovery, strategy, UX and UI design, front-end engineering and post-launch optimisation. The bigger difference is accountability. At enterprise scale you need a partner responsible for outcomes, who stays engaged when stakeholders disagree or the brief changes mid-programme."
+      - q: Can you improve a legacy platform without rebuilding it?
+        a: Yes. For Benchmark Estimating we modernised the visual design, data tables, dashboards and navigation in four weeks without changing the database, APIs or routing. Time on task fell 42% and 98% of users preferred the new interface.
+      - q: How do you manage projects with many internal stakeholders?
+        a: We plan for it rather than react to it. Discovery includes structured stakeholder interviews and alignment sessions that surface competing priorities before they block delivery. During the engagement we keep clear governance checkpoints, documented change requests and a regular reporting rhythm, so decision-makers stay informed without being pulled into day-to-day detail.
+      - q: Can you work with our existing engineering team?
+        a: Yes, and we often do. Benchmark kept their in-house developers. We typically lead discovery, product strategy and UX and UI design, and deliver component-based, documented designs that fit your build process. Where there’s a front-end gap, we embed a developer alongside your team.
+      - q: How long does an enterprise engagement take?
+        a: A UI uplift on an existing platform can take four weeks. Discovery and design for one product area typically runs 8 to 12 weeks, and a full platform rebuild 6 to 12 months. Multi-year programmes run on a rolling basis with phased milestones. If you have a fixed deadline or a phased budget, we shape the work around it from the start.
+      - q: Do you have experience in regulated industries?
+        a: Yes. Our work includes clinical trials software for Axivera and carbon reporting tools built around PAS 2080 for Benchmark. In these environments accessibility, documentation and data permissions are part of the brief, and compliance review is planned as its own stage.
+      - q: How do you measure success after launch?
+        a: We agree the measures in discovery, take a baseline from the current product and compare after launch. For Benchmark that meant time on task, clicks per core journey and user preference.

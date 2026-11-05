@@ -1,0 +1,193 @@
+---
+title: "Legacy UI Uplift in 4 Weeks: Benchmark Case Study"
+description: Vigo modernised Benchmark Estimating’s legacy platform in four weeks without touching its architecture. Time on task down 42%, 98% preferred it.
+heading: Transforming the user experience of a large scale legacy platform in 4 weeks.
+listingTitle: "Benchmark Estimating: legacy platform UI uplift in four weeks"
+tags:
+  - Selekt
+  - UX/UI
+  - Prototyping
+heroColor: "#ffffff"
+heroTextColor: "#000000"
+heroImage: /assets/screenshot-2026-05-14-at-14.58.27.png
+listingImage: /assets/screenshot-2026-05-14-at-14.58.27.png
+---
+
+<Text>
+
+**Client:** Benchmark Estimating
+
+**Sector:** infrastructure cost estimating software
+
+**Markets:** UK, Australia, New Zealand
+
+**Services:** discovery, UI design, data table and dashboard redesign, design system foundation, front-end support
+
+**Team: 3** (senior designer, product strategist, front-end developer)
+
+**Timeline:** 4 weeks
+
+</Text>
+
+<Text title="Summary">
+
+Vigo modernised Benchmark Estimating’s legacy cost estimating platform in four weeks without changing its architecture, database or APIs. A three-person team redesigned dashboards, data tables, navigation and visual language alongside Benchmark’s own engineers. Average time on task fell 42%, core journeys took 19.1 fewer clicks on average, and 98% of users preferred the new interface.
+
+</Text>
+
+<Stats items={[
+  {
+    "value": "42%",
+    "label": "less time on task"
+  },
+  {
+    "value": "19.1",
+    "label": "fewer clicks per core journey on average"
+  },
+  {
+    "value": "98%",
+    "label": "of users preferred the new interface"
+  },
+  {
+    "value": "4wks",
+    "label": "from kickoff to shipped"
+  }
+]} />
+
+<Text title="The challenge: a platform built for power, not polish">
+
+Benchmark Estimating is the platform of record for large-scale infrastructure cost estimation across Australia, the UK and New Zealand. Its users are mostly senior estimating engineers working on projects worth billions in capital spend, with deep datasets and decisions where precision matters.
+
+The platform had grown over many years. Features had been layered on features and workflows had evolved. The interface still worked, and long-term users knew it inside out, but it carried the debt that all mature software builds up. The visual language was dated and key workflows had unnecessary friction. Prospective clients seeing it for the first time got an impression that undersold what it could do.
+
+> “The product was powerful. The problem was that it no longer looked like it was.”
+
+Benchmark asked Vigo to close that gap. The brief was to modernise the experience so existing and prospective clients could see a new era for the product, and to fix the worst day-to-day usability problems for the engineers who rely on it.
+
+</Text>
+
+<Figure src="/assets/image-132.png" alt="" gradient="coral-purple" />
+
+<Text title="The constraints">
+
+This wasn’t a greenfield redesign. The underlying architecture could not change: no database changes, no API refactoring and no restructuring of component hierarchies or routing. Benchmark’s developers had their own roadmap, so Vigo’s work had to slot into the existing codebase quickly and with minimal disruption.
+
+The constraint made the work sharper. Every proposed change had to pass a feasibility test before it went any further.
+
+</Text>
+
+<Cards items={[
+  {
+    "icon": "pen-paintbrush",
+    "title": "In scope",
+    "body": "Visual styling, typography, colour, spacing, iconography, component presentation, data table layout and density controls, dashboard structure, empty and loading states, micro-interactions and motion."
+  },
+  {
+    "icon": "chart-diagram",
+    "title": "Out of scope",
+    "body": "Application architecture, data models, routing, back-end logic, structural component hierarchy, new features, and anything needing changes to the platform’s core engineering."
+  }
+]} />
+
+<Text>
+
+Design and development had to move together. This was a stop-gap release, not a design system vision exercise, so every decision had to become something buildable within four weeks.
+
+The redesign also had to work for two audiences at once. Experienced engineers who use the platform daily wanted efficiency above everything. New and prospective clients were forming a first impression.
+
+</Text>
+
+<Text title="Discovery: getting inside infrastructure estimation">
+
+Cost estimating for roads, rail, utilities, water and telecoms networks doesn’t yield quickly to a generalist. The data is layered, the terminology is specialised and the stakes are high. A poor design here doesn’t just look wrong. It disrupts the work of people whose figures shape multi-billion decisions.
+
+Vigo worked through the application itself, ran sessions with the Benchmark team and spoke with estimating engineers about how they actually work. We mapped the primary user journeys and pinpointed where friction was worst.
+
+***What engineers told us:*** they had invested real time in mastering a complex tool and didn’t want a redesign that forced them to relearn it. Their priorities were consistent: lots of information on screen, fast navigation and clarity in data-heavy views. Seeing large volumes of cost data at once, across work breakdown structures, rate libraries, resource categories and project hierarchies, was the central requirement. A better-looking interface that showed less data would have been worse than no redesign at all.
+
+</Text>
+
+<Figure src="/assets/project-details.png" alt="" gradient="coral-purple" />
+
+<Text title="Our approach: a team of three, a four-week brief">
+
+Vigo put together a lean team: a senior designer leading UI direction and visual execution, a product strategist leading discovery, user insight and design rationale, and a front-end developer embedded from day one.
+
+The developer’s role was the key decision. In a constrained engagement, the most expensive mistake is designing something that can’t be built. With a developer in every design conversation, each idea was tested against the real codebase as it was drawn rather than handed over and hoped for.
+
+</Text>
+
+<Cards items={[
+  {
+    "title": "Week 1: Orientation and constraint mapping.",
+    "body": "A deep dive into the application, the domain, the user base and the technical limits. We identified the highest-impact areas within scope and set design principles and a visual direction."
+  },
+  {
+    "title": "Week 2: Rapid iteration with feasibility checks.",
+    "body": "Fast design exploration across priority screens, with daily checks against the codebase alongside Benchmark’s development team."
+  },
+  {
+    "title": "Week 3: Refinement and handoff preparation.",
+    "body": "We consolidated the direction, resolved edge cases and stress-tested data-heavy layouts with realistic content volumes. We also prepared detailed specifications for Benchmark’s developers."
+  },
+  {
+    "title": "Week 4: Developer collaboration and delivery.",
+    "body": "We worked closely with Benchmark’s engineers during implementation, answering questions and making sure the built product matched the design."
+  }
+]} />
+
+<Figure src="/assets/project-sections.png" alt="" gradient="coral-purple" />
+
+<Text title="Where the work focused">
+
+Not every corner of a large application can be improved in four weeks. Vigo prioritised by how severe the usability problems were, how visible each area was to prospective clients and what was feasible within the constraints.
+
+**Dashboards and overview screens.** These are where clients land and where prospects form their first impression. We reworked information hierarchy, visual weight and how key metrics are shown.
+
+**Interactive data tables.** The engine room of estimating work. We redesigned density controls, row states, column legibility and header behaviour to fit more usable data on screen without losing context.
+
+**Visual language and typography.** A systematic refresh of colour, type hierarchy, iconography, spacing and component styling, applied consistently for a modern, engineering-grade look.
+
+**States and feedback.** Loading states, empty states, confirmations and error handling. Getting these consistent raised the perceived quality of the whole product.
+
+**Navigation and wayfinding.** Within the structural limits, we refined navigation to cut clicks, surface context and make it easier for experienced users to move at speed.
+
+**Readability at high volume.** Engineers often work with hundreds or thousands of line items at once. Typographic and layout changes keep dense, numeric data legible and reduce eye strain across long sessions.
+
+</Text>
+
+<Figure src="/assets/1.-aesthetic.png" alt="" gradient="coral-purple" />
+
+<Figure src="/assets/2.-colour-coding.png" alt="" gradient="coral-purple" />
+
+<Figure src="/assets/4.-forms.png" alt="" gradient="coral-purple" />
+
+<Text title="Results: a platform that now looks as capable as it is">
+
+Despite tight constraints and a four-week timeline, the redesign shipped and made a visible difference. Benchmark measured the new interface against the old one across its core journeys:
+
+-   Average time on task fell 42%.
+    
+-   Core journeys took an average of 19.1 fewer clicks.
+    
+-   98% of users preferred the new interface.
+    
+
+Beyond the numbers, the engagement delivered:
+
+-   **A modern visual identity** that signals momentum to existing and prospective clients without disrupting what experienced users rely on.
+    
+-   **Better data tables and density controls,** so engineers can view and navigate larger volumes of data with less friction.
+    
+-   **Redesigned dashboards** that communicate key metrics clearly and change the first impression for new viewers.
+    
+-   **A design system foundation** that gives Benchmark’s developers a consistent visual language for the product’s next chapter.
+    
+-   **A shipped, live product,** not a concept deck, now in the hands of real users.
+    
+-   **A working model for future collaboration** between Vigo’s front-end developer and Benchmark’s engineering team.
+    
+
+> “The team grasped our domain quickly, respected our constraints entirely, and delivered something that made the platform look and feel like it belongs to the next decade of the product, not the last one.”
+
+</Text>

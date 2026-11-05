@@ -1,14 +1,16 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
-import InsightCard from "../../components/InsightCard.astro";
+import PageHeader from "../../components/blocks/PageHeader.astro";
+import ListingCard from "../../components/ListingCard.astro";
 const posts = (await getCollection("insights", (e) => !e.data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
-<Base title="Insights" description="Here's where we note down our experiences, expertise and perspective.">
-  <section class="container pt-32 pb-14 lg:pb-31">
-    <h1 class="text-4xl font-bold text-gray-500 md:text-5xl">Insights</h1>
-    <p class="mt-4 text-smx text-gray-400">Here's where we note down our experiences, expertise and perspective</p>
-    <div class="mt-14 grid gap-x-10 gap-y-14 md:grid-cols-2 lg:grid-cols-3">{posts.map((p) => <InsightCard entry={p} />)}</div>
-  </section>
+<Base title="Insights" description="Experience, expertise and perspective from Vigo on digital product strategy, UX design and enterprise platforms.">
+  <PageHeader type="pageHeader" background="white" eyebrow="Insights" heading="Here's where we note down our experiences, expertise and perspective" />
+  <div class="container my-16">
+    <div class="grid lg:grid-cols-3 gap-6 xl:gap-12 xl:w-fit xl:mx-auto">
+      {posts.map((p, i) => <ListingCard href={`/insights/${p.id}`} title={p.data.title} image={p.data.listingImage ?? p.data.heroImage} author={p.data.author} date={p.data.date} index={i} />)}
+    </div>
+  </div>
 </Base>

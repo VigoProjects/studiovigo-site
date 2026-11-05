@@ -1,0 +1,42 @@
+---
+/**
+ * Grid of glowing icon cards (process steps, "in scope" lists, benefits…).
+ * icon: a Font Awesome icon name without the prefix, e.g. "magnifying-glass".
+ * columns: 4 (default) or 3 or 2 on desktop.
+ */
+import GlowCard from "./GlowCard.astro";
+import { gradientFor } from "../lib/gradients";
+import { md } from "../lib/site";
+interface Props {
+  heading?: string;
+  body?: string;
+  items: { title: string; body: string; icon?: string }[];
+  numbered?: boolean;
+  columns?: 2 | 3 | 4;
+}
+const { heading, body, items, numbered = false, columns = 4 } = Astro.props;
+const width = { 2: "md:w-[calc(50%-1rem)]", 3: "md:w-[calc(50%-1rem)] xl:w-[calc((100%-4rem)/3)]", 4: "md:w-[calc(50%-1rem)] xl:w-[calc((100%-6rem)/4)]" }[columns];
+---
+<section class="flex flex-col gap-10 text-gray-500 md:gap-14">
+  {(heading || body) && (
+    <div class="mx-auto flex max-w-2xl flex-col gap-4 text-center">
+      {heading && <h2 class="text-3xl font-bold leading-tight md:text-4xl">{heading}</h2>}
+      {body && <p class="text-basex">{body}</p>}
+    </div>
+  )}
+  <div class="flex flex-wrap justify-center gap-8">
+    {items.map((c, i) => (
+      <GlowCard gradient={gradientFor(i)} class={`w-full min-w-0 ${width}`}>
+        <div class="flex h-full flex-col items-start gap-5 px-6 py-8 [overflow-wrap:anywhere]">
+          {c.icon && (
+            <div aria-hidden="true" class="clip-rounded-square flex h-8.5 w-8.5 shrink-0 items-center justify-center bg-gray-500 text-sm text-white">
+              <i class={`fa-solid fa-${c.icon}`} aria-hidden="true"></i>
+            </div>
+          )}
+          <h3 class="text-xlx font-bold">{numbered ? `${i + 1}. ` : ""}{c.title}</h3>
+          <div class="text-smx leading-7 text-gray-400 flex flex-col gap-y-4 [&_a]:underline [&_ul]:list-disc [&_ul]:pl-5" set:html={md(c.body)} />
+        </div>
+      </GlowCard>
+    ))}
+  </div>
+</section>

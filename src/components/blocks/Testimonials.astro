@@ -1,23 +1,10 @@
 ---
 import type { z } from "astro/zod";
 import type { testimonials } from "../../content/blocks";
-import { getCollection } from "astro:content";
-import Section from "../Section.astro";
-type Props = z.infer<typeof testimonials> & { embedded?: boolean };
-const { id, background, embedded = false } = Astro.props;
-const items = await getCollection("testimonials");
-const Wrapper = embedded ? "div" : Section;
+import Testimonials from "../Testimonials.astro";
+type Props = z.infer<typeof testimonials>;
+const { id, background } = Astro.props;
 ---
-<Wrapper id={id} background={background}>
-  <div class="-mx-5 flex snap-x snap-mandatory gap-6 overflow-x-auto px-5 pb-4 [scrollbar-width:none]">
-    {items.map(({ data: t }) => (
-      <figure class="flex w-[85%] shrink-0 snap-start flex-col justify-between gap-y-8 rounded-3xl bg-white p-8 md:w-[45%] lg:w-[32%]">
-        <blockquote class="text-smx text-gray-500">{t.quote}</blockquote>
-        <figcaption class="flex items-center gap-x-4">
-          {t.logo && <img src={t.logo} alt="" class="size-12 rounded-full object-cover" loading="lazy" />}
-          <span class="flex flex-col"><strong class="text-sm font-bold text-gray-500">{t.name}</strong><span class="text-xs text-gray-400">{t.role}</span></span>
-        </figcaption>
-      </figure>
-    ))}
-  </div>
-</Wrapper>
+<div id={id} class:list={[background === "grey" && "bg-gray-200"]}>
+  <div class="container py-14 md:py-18 lg:py-31"><Testimonials /></div>
+</div>

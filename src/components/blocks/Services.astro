@@ -1,35 +1,76 @@
 ---
+/** Featured service cards + optional tabbed "All services" panel (accordion on mobile). */
 import type { z } from "astro/zod";
 import type { services } from "../../content/blocks";
-import Section from "../Section.astro";
-import Eyebrow from "../Eyebrow.astro";
-import Button from "../Button.astro";
+import GlowCard from "../GlowCard.astro";
+import { gradientFor } from "../../lib/gradients";
+import SectionIntro from "../SectionIntro.astro";
 type Props = z.infer<typeof services>;
-const { eyebrow, heading, items, allHeading, allBody, allItems, id, background } = Astro.props;
+const { eyebrow, heading, items, all, id } = Astro.props;
+const arrow = `<svg class="transition-transform duration-500 ease-in-out transform will-change-transform group-hover:translate-x-1" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M1.59961 6H10.5996M10.5996 6L5.817 1M10.5996 6L5.817 11" stroke="#333" stroke-width="2" stroke-linecap="round" /></svg>`;
+const plus = `<svg class="w-2 h-2" width="8" height="9" viewBox="0 0 8 9" fill="none"><path d="M4 1.5V7.5M7 4.5L1 4.5" stroke="#333333" stroke-width="2" stroke-linecap="round" /></svg>`;
+const minus = `<svg class="w-2 h-2" width="8" height="9" viewBox="0 0 8 9" fill="none"><path d="M7 4.5L1 4.5" stroke="#333333" stroke-width="2" stroke-linecap="round" /></svg>`;
 ---
-<Section id={id} background={background} class="flex flex-col gap-y-8 md:gap-y-14">
-  <div class="flex flex-col gap-y-4">
-    {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-    <h2 class="max-w-3xl text-3xl font-bold text-gray-500 md:text-4xl">{heading}</h2>
-  </div>
-  <div class="grid gap-6 md:grid-cols-3">
-    {items.map((s) => (
-      <article class="flex flex-col justify-between gap-y-8 rounded-3xl bg-gray-200 p-8">
-        <div class="flex flex-col gap-y-3">
-          <h3 class="text-2xlx font-bold text-gray-500">{s.title}</h3>
-          <p class="text-sm text-gray-400">{s.body}</p>
+<div id={id} class="section-spacing container py-14 md:pt-18 md:pb-36 lg:pt-31 lg:pb-48 flex flex-col gap-y-8 md:gap-y-14 xl:pb-31 scroll-mt-20">
+  <SectionIntro {eyebrow} {heading} />
+
+  <div class="flex flex-col gap-y-4 lg:flex-row lg:gap-x-10 lg:justify-center xl:justify-between lg:items-stretch">
+    {items.map((s, i) => (
+      <GlowCard gradient={gradientFor(i)} class="basis-full lg:max-w-80" innerClass="h-full">
+        <div class="flex h-full flex-col items-center gap-y-3 px-4 py-8 md:px-11.5 md:py-13 lg:p-6 md:flex-row lg:flex-col md:gap-x-7 lg:gap-y-6">
+          {s.illustration && <div class="w-40 h-31 md:w-48 md:h-36 lg:w-40 lg:h-31 flex-none"><img src={s.illustration} alt="" class="w-full h-full" loading="lazy" /></div>}
+          <div class="flex flex-1 flex-col items-center text-center md:text-left md:items-start lg:text-center lg:items-center gap-y-7 md:gap-y-4">
+            <p class="text-xlx font-bold text-gray-500">{s.title}</p>
+            <div class="text-smx leading-7 text-gray-400 lg:flex-1">{s.body}</div>
+            {s.href && (
+              <a href={s.href} class="flex items-center gap-x-3 w-fit rounded-full text-sm leading-snug font-medium transition-[background-color,color,box-shadow] duration-500 ease-in-out group text-gray-500 py-2.25">
+                Learn More <Fragment set:html={arrow} />
+              </a>
+            )}
+          </div>
         </div>
-        {s.href && <Button href={s.href} variant="light">Learn More</Button>}
-      </article>
+      </GlowCard>
     ))}
   </div>
-  {allItems && (
-    <div class="flex flex-col gap-y-6">
-      {allHeading && <h3 class="text-2xlx font-bold text-gray-500">{allHeading}</h3>}
-      {allBody && <p class="text-sm text-gray-400">{allBody}</p>}
-      <ul class="flex flex-wrap gap-3">
-        {allItems.map((i) => <li class="rounded-full border border-gray-250 px-5 py-2 text-sm font-medium text-gray-500">{i}</li>)}
-      </ul>
+
+  {all && (
+    <div class="pt-14 md:pt-18 lg:pt-31 flex flex-col gap-y-8 md:gap-y-14">
+      <SectionIntro eyebrow={all.eyebrow} heading={all.heading} />
+      <div class="py-2 md:py-6 md:px-2 lg:p-0" x-data="{ active: window.innerWidth >= 768 ? 0 : null }"
+        @resize.window.debounce.150ms="if (window.innerWidth >= 768 && active === null) active = 0">
+        <div class="flex flex-col gap-y-2 md:grid md:grid-cols-[auto] xl:grid-cols-[260px_1fr]">
+          <!-- Tabs (desktop) / accordion headers (mobile) -->
+          <div class="flex flex-col gap-y-2 md:flex-row md:overflow-x-auto hide-scrollbar xl:flex-col xl:justify-center" role="tablist">
+            {all.tabs.map((t, i) => (
+              <button type="button" role="tab" :aria-selected={`active === ${i}`} @click={`active = (window.innerWidth < 768 && active === ${i}) ? null : ${i}`}
+                class="flex w-full shrink-0 items-center justify-between py-7 px-6 md:w-auto md:py-5.5 font-bold text-basex md:text-smx cursor-pointer rounded-lgx md:rounded-b-none md:rounded-t-xl xl:rounded-r-none xl:rounded-l-xl bg-gray-200 md:bg-transparent text-gray-500 transition-all duration-400"
+                :class={`active === ${i} ? 'md:!bg-gray-200' : 'md:text-gray-350 md:hover:text-gray-500'`}>
+                {t.title}
+                <span class="w-6 h-6 flex items-center justify-center rounded-full border-2 border-gray-500 md:hidden" aria-hidden="true">
+                  <span x-show={`active !== ${i}`} set:html={plus} /><span x-show={`active === ${i}`} x-cloak set:html={minus} />
+                </span>
+              </button>
+            ))}
+          </div>
+          <!-- Panels -->
+          <div class="md:bg-gray-200 md:rounded-b-xl xl:rounded-xl xl:min-h-[420px] xl:flex xl:items-center">
+            {all.tabs.map((t, i) => (
+              <div x-show={`active === ${i}`} x-cloak={i > 0 ? "" : undefined} x-transition.opacity.duration.400ms role="tabpanel"
+                class="mx-2 mb-2 flex flex-col gap-y-2 md:grid md:grid-cols-2 xl:grid-cols-3 md:gap-y-10 md:gap-x-14 md:mx-16 md:my-14 md:h-fit">
+                {t.items.map((f) => (
+                  <div class="bg-white md:bg-transparent px-4 py-6 rounded-md flex flex-col items-center text-center gap-y-4 md:p-0 md:text-left md:items-start md:gap-y-6">
+                    <div class="flex flex-col items-center gap-y-4 md:flex-row md:text-left md:gap-x-4">
+                      {f.icon && <div class="text-white bg-gray-500 clip-rounded-square text-sm w-8.5 h-8.5 flex flex-none justify-center items-center"><i class={`fa-solid fa-${f.icon}`} aria-hidden="true"></i></div>}
+                      <p class="text-smx font-bold text-gray-500">{f.title}</p>
+                    </div>
+                    <div class="text-smx leading-7 text-gray-400"><p>{f.body}</p></div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   )}
-</Section>
+</div>

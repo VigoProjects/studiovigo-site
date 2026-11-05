@@ -2,12 +2,21 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import CookieBanner from "../components/CookieBanner.astro";
 import { site } from "../lib/site";
 
-interface Props { title: string; description?: string; ogImage?: string; type?: "website" | "article" }
-const { title, description = site.tagline, ogImage, type = "website" } = Astro.props;
-const fullTitle = title === "Home" ? `Digital Product Agency for Complex Systems & Big Data | ${site.name}` : `${title} | ${site.name}`;
-const canonical = new URL(Astro.url.pathname.replace(/\/$/, "") || "/", Astro.site).href;
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  type?: "website" | "article";
+  /** Full <title> override; otherwise "<title> | Vigo". */
+  metaTitle?: string;
+}
+const { title, description = site.tagline, ogImage, type = "website", metaTitle } = Astro.props;
+const fullTitle = metaTitle ?? (title === "Home" ? `Digital Product Agency for Complex Systems & Big Data | ${site.name}` : `${title} | ${site.name}`);
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const canonical = new URL(path, Astro.site).href;
 const gtm = site.analytics?.gtm;
 ---
 <!doctype html>
@@ -18,6 +27,7 @@ const gtm = site.analytics?.gtm;
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -26,14 +36,31 @@ const gtm = site.analytics?.gtm;
     <meta property="og:locale" content="en_GB" />
     {ogImage && <meta property="og:image" content={new URL(ogImage, Astro.site).href} />}
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="/favicon.ico" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
+    <link rel="manifest" href="/favicon/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="preload" href="/fonts/made-tommy-regular.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="/fonts/made-tommy-bold.otf" as="font" type="font/otf" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" />
-    {site.fontAwesomeKit && <script src={`https://kit.fontawesome.com/${site.fontAwesomeKit}.js`} crossorigin="anonymous" defer></script>}
+    {site.fontAwesomeKit && <script is:inline src={`https://kit.fontawesome.com/${site.fontAwesomeKit}.js`} crossorigin="anonymous" defer></script>}
+    <style is:global>[x-cloak] { display: none !important; }</style>
     {gtm && (
       <script is:inline define:vars={{ gtm }}>
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',gtm);
+        (() => {
+          let ok = false;
+          try { ok = localStorage.getItem('cookie-accepted') === '1'; } catch (e) {}
+          if (!ok) return;
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          const tag = document.createElement('script');
+          tag.async = true;
+          tag.src = 'https://www.googletagmanager.com/gtm.js?id=' + gtm;
+          document.head.appendChild(tag);
+        })();
       </script>
     )}
   </head>
@@ -41,5 +68,7 @@ const gtm = site.analytics?.gtm;
     <Header />
     <main><slot /></main>
     <Footer />
+    <CookieBanner />
+    <script>import "../scripts/alpine";</script>
   </body>
 </html>

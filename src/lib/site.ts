@@ -11,7 +11,10 @@ export interface SiteConfig {
   footerNav: { label: string; href: string }[];
   offices: { city: string; address: string }[];
   cta: { heading: string; body: string; label: string; href: string };
+  menuCaseStudies: string[];
+  cookieMessage: string;
   analytics?: { gtm?: string };
+  clutchCompanyId?: string;
   fontAwesomeKit?: string;
 }
 

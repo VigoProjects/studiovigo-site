@@ -1,0 +1,50 @@
+---
+/**
+ * Grid of glowing count-up stats. Used by the `stats` block and inside case studies.
+ * value: the display value, e.g. "42%", "9.58s", "£1.2m", "3x" — the number part counts up.
+ */
+import GlowCard from "./GlowCard.astro";
+import { gradientFor } from "../lib/gradients";
+interface Props {
+  heading?: string;
+  body?: string;
+  items: { value: string; label: string }[];
+  align?: "center" | "left";
+}
+const { heading, body, items, align = "center" } = Astro.props;
+const split = (v: string) => {
+  const m = v.match(/^(\D*?)(\d+(?:\.\d+)?)(.*)$/);
+  return m ? { pre: m[1], num: m[2], post: m[3] } : { pre: "", num: "", post: v };
+};
+---
+<section class:list={["flex flex-col gap-10 text-gray-500 md:gap-14", align === "center" && "text-center"]}>
+  {(heading || body) && (
+    <div class="mx-auto flex max-w-2xl flex-col gap-4 text-center">
+      {heading && <h2 class="text-3xl font-bold leading-tight md:text-4xl">{heading}</h2>}
+      {body && <p class="text-basex">{body}</p>}
+    </div>
+  )}
+  <div class="flex flex-wrap justify-center gap-8">
+    {items.map((s, i) => {
+      const { pre, num, post } = split(s.value);
+      return (
+        <GlowCard gradient={gradientFor(i)} class="w-full min-w-0 sm:w-[calc(50%-1rem)] xl:w-[calc(25%-1.5rem)]">
+          {num ? (
+            <dl class="flex h-full flex-col justify-center gap-3 px-4 py-8" x-data="statistic" data-value={num} x-intersect.once="start()">
+              <dt class="order-2 text-smx">{s.label}</dt>
+              <dd class="font-lexend text-5xl font-bold leading-none tracking-tight [overflow-wrap:anywhere] md:text-6xl">
+                <span class="sr-only">{s.value}</span>
+                <span aria-hidden="true">{pre}<span x-ref="number">{num}</span>{post}</span>
+              </dd>
+            </dl>
+          ) : (
+            <dl class="flex h-full flex-col justify-center gap-3 px-4 py-8">
+              <dt class="order-2 text-smx">{s.label}</dt>
+              <dd class="font-lexend text-5xl font-bold leading-none tracking-tight [overflow-wrap:anywhere] md:text-6xl">{s.value}</dd>
+            </dl>
+          )}
+        </GlowCard>
+      );
+    })}
+  </div>
+</section>

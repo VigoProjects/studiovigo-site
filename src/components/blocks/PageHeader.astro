@@ -1,0 +1,14 @@
+---
+import type { z } from "astro/zod";
+import type { pageHeader } from "../../content/blocks";
+import SectionIntro from "../SectionIntro.astro";
+type Props = z.infer<typeof pageHeader> & { isPageTitle?: boolean };
+const { eyebrow, heading, id, isPageTitle = true } = Astro.props;
+---
+<div id={id} class="relative group overflow-hidden bg-white z-10">
+  <div class="absolute inset-0 -top-5 -z-10 gradient-hero h-25 opacity-100 blur-2xl"></div>
+  <div class="absolute inset-0 -z-10 gradient-hero h-50 opacity-20 blur-4xl"></div>
+  <div class="container pt-32 pb-22 md:pt-36 text-center items-center flex flex-col gap-y-8.5 md:gap-y-6">
+    <SectionIntro {eyebrow} {heading} tag={isPageTitle ? "h1" : "h2"} />
+  </div>
+</div>

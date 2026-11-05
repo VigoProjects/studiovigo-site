@@ -40,34 +40,120 @@ blocks:
       Vigo does all of that with a small senior team. Strategy, UX and UI design and front-end engineering sit together from day one, so the layouts we test are the layouts that get built, and the metrics we agree in discovery are the ones we report on after launch.
     image: { src: /assets/2025-11-06-17.14.23.jpg, alt: The Vigo team at work }
 
-  - type: steps
+  - type: cards
     heading: From UX concept to post-launch measurement, under one roof
     items:
       - title: Discover and define
         body: Stakeholder interviews, user observation, journey mapping and agreed success metrics before any design starts. For [Catchbox](/case-studies/catchbox) we visited the factory in Latvia and interviewed staff, distributors and sales teams.
+        icon: magnifying-glass
       - title: UX concept and page layouts
         body: "Wireframes, tested prototypes and production-ready Figma designs built on a component library. Example: two Catchbox wireframe concepts were tested against each other with users from broadcasting, AV and education."
+        icon: table-layout
       - title: Build and launch
         body: Front-end development in React or Webflow, or design handed to your engineers with a developer embedded alongside them. For example, [benchmark's uplift shipped in four weeks](/case-studies/legacy-application-ui-uplift) without a single architecture change.
+        icon: flag-pennant
       - title: Measure and optimise
         body: Analytics set-up, before-and-after benchmarks, UX audits and conversion work once real users arrive. Like [Benchmark's core journeys now take an average of 19.1 fewer clicks.](/case-studies/legacy-application-ui-uplift)
+        icon: chart-column
+    numbered: true
 
   - type: services
     id: services
     eyebrow: Design services
     heading: Three core services to take your digital product from idea to reality.
     items:
-      - { title: Product Strategy, body: Defining direction. Aligning teams. Delivering clarity and confidence., href: /product-strategy }
-      - { title: Prototyping, body: The power of expanding a vision and aligning thoughts., href: /discovery-prototyping }
-      - { title: UX & UI Design, body: Turning complex challenges into clear, elegant experiences., href: /uxui-design }
-    allHeading: All Services
-    allBody: A complete range of services to assist in the entire digital product lifecycle.
-    allItems:
-      - Design & Prototyping
-      - Business & User Analysis
-      - Engineering & Deployment
-      - Consulting
-      - Performance Optimisation
+      - { title: Product Strategy, body: Defining direction. Aligning teams. Delivering clarity and confidence., href: /product-strategy, illustration: /assets/illustrations/product-strategy.svg }
+      - { title: Prototyping, body: The power of expanding a vision and aligning thoughts., href: /discovery-prototyping, illustration: /assets/illustrations/prototyping.svg }
+      - { title: UX & UI Design, body: Turning complex challenges into clear, elegant experiences., href: /uxui-design, illustration: /assets/illustrations/uxui-design.svg }
+    all:
+      eyebrow: All Services
+      heading: A complete range of services to assist in the entire digital product lifecycle.
+      tabs:
+        - title: Design & Prototyping
+          items:
+            - icon: users
+              title: Discovery Workshops
+              body: We bring teams together to align on goals, define scope, and uncover what success really looks like.
+            - icon: puzzle
+              title: Rapid Prototyping
+              body: Move fast from idea to interaction. Test concepts early with real users before you commit to build.
+            - icon: arrow-pointer
+              title: UX & Interface Design
+              body: We craft intuitive, human-centred interfaces that turn complex challenges into seamless digital experiences.
+            - icon: solar-system
+              title: Design Systems
+              body: Scalable, consistent, and future-proof. We build component libraries that grow with your product.
+            - icon: palette
+              title: Interactive Visuals
+              body: From 3D renders to motion design — we create visuals that add clarity, realism, and delight.
+        - title: Business & User Analysis
+          items:
+            - icon: head-side-heart
+              title: Stakeholder Insight
+              body: We listen first — uncovering goals, challenges, and opportunities through structured discovery sessions.
+            - icon: magnifying-glass-chart
+              title: User Research
+              body: Real users, real behaviour. We observe and interview to understand needs, motivations, and pain points.
+            - icon: binoculars
+              title: Market Benchmarking
+              body: We analyse your competitors and category to find where you can stand apart — and lead.
+            - icon: map-location
+              title: Journey Mapping
+              body: We visualise the complete customer experience to reveal moments that matter most.
+            - icon: clipboard-list
+              title: Requirements Definition
+              body: Turning insight into action — translating what users need into what the business must deliver.
+        - title: Engineering & Deployment
+          items:
+            - icon: desktop
+              title: Front-End Development
+              body: Beautiful, responsive, high-performance builds using modern frameworks that scale effortlessly.
+            - icon: table
+              title: CMS Integration
+              body: Flexible, maintainable content systems that give your team full control — no developer required.
+            - icon: chart-diagram
+              title: System Integration
+              body: Seamless API connections and data flow between your tools, platforms, and products.
+            - icon: cart-shopping-fast
+              title: Performance Engineering
+              body: Optimised for speed, reliability, and resilience across all devices and environments.
+            - icon: rocket-launch
+              title: Launch & Handover
+              body: Production-ready deployment, with clear documentation and full training for your team.
+        - title: Consulting
+          items:
+            - icon: laptop-binary
+              title: Digital Strategy
+              body: We help define where you’re going and how to get there — clearly, confidently, and with purpose.
+            - icon: brain-arrow-curved-right
+              title: Product Visioning
+              body: Collaborative sessions to shape, refine, and communicate the next chapter of your digital product.
+            - icon: atom
+              title: Design System Advisory
+              body: We guide teams in building, scaling, and governing design systems that endure.
+            - icon: message-question
+              title: Technical Feasibility
+              body: Assess, validate, and de-risk — ensuring your vision aligns with what’s technically achievable.
+            - icon: gift-card
+              title: Team Enablement
+              body: We embed skills and frameworks, helping your teams work smarter and design better, every day.
+        - title: Performance Optimisation
+          items:
+            - icon: computer-mouse
+              title: UX Audits
+              body: We evaluate your product’s usability, clarity, and accessibility — and identify what’s holding it back.
+            - icon: chart-line
+              title: Data & Analytics Insight
+              body: Turn user data into direction. We uncover patterns to drive smarter decisions and measurable results.
+            - icon: spinner
+              title: Code & Speed Audits
+              body: Find and fix inefficiencies that impact performance — from front-end delivery to server response.
+            - icon: conveyor-belt
+              title: Conversion Optimisation
+              body: Refine key moments in the journey to improve engagement, satisfaction, and business impact.
+            - icon: chart-column
+              title: Continuous Improvement
+              body: We partner long-term, evolving products through iterative testing, analysis, and enhancement.
 
   - type: list
     eyebrow: Who we work with
@@ -82,7 +168,7 @@ blocks:
     background: grey
     eyebrow: Our Work
     heading: Collaborating with clients big and small to craft meaningful digital products
-    featured: [benchmark_carbon, catchbox, anthony-ellis]
+    featured: [ benchmark_carbon, catchbox, anthony-ellis ]
     showTestimonials: true
 
   - type: list

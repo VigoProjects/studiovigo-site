@@ -1,0 +1,15 @@
+---
+/** Consent banner. Google Tag Manager only loads after "Accept All" (see Base.astro). */
+import { site } from "../lib/site";
+const btn = "cursor-pointer flex items-center gap-x-3 w-fit rounded-full text-sm leading-snug font-medium transition-[background-color,color,box-shadow] duration-500 ease-in-out group px-5 py-2.25 shadow-btn-white-md hover:shadow-btn-white-lg";
+---
+<div x-data="{ show: false }" x-init="try { show = !localStorage.getItem('cookie-accepted') } catch (e) { show = true }" x-show="show" x-cloak x-transition
+  class="fixed bottom-0 left-0 right-0 bg-gray-500 shadow-sm z-50" role="region" aria-label="Cookie consent" aria-live="polite">
+  <div class="p-4 lg:px-5 lg:py-4 mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+    <div class="text-white text-center lg:text-left text-smx leading-7 [&>p]:inline"><p>{site.cookieMessage}</p></div>
+    <div class="flex justify-center lg:justify-start gap-3">
+      <button @click="try { localStorage.setItem('cookie-accepted', '1') } catch (e) {}; show = false; window.location.reload()" class:list={[btn, "text-gray-500 bg-white"]}>Accept All</button>
+      <button @click="try { localStorage.setItem('cookie-accepted', '0') } catch (e) {}; show = false" class:list={[btn, "bg-gray-500 text-white"]}>Accept Necessary</button>
+    </div>
+  </div>
+</div>

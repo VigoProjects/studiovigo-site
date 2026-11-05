@@ -1,0 +1,9 @@
+---
+/**
+ * Count-up stat cards. Usage in .mdx:
+ *   <Stats heading="Optional heading" items={[{ value: "42%", label: "less time on task" }]} />
+ */
+import StatGrid from "../StatGrid.astro";
+interface Props { heading?: string; body?: string; items: { value: string; label: string }[] }
+---
+<div class="mx-auto w-full max-w-6xl px-4 md:px-8"><StatGrid {...Astro.props} /></div>

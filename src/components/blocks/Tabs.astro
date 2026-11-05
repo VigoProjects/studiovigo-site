@@ -1,0 +1,44 @@
+---
+/** Titled panels — side tabs on desktop (≥1200px), accordion on smaller screens. */
+import type { z } from "astro/zod";
+import type { tabs } from "../../content/blocks";
+import SectionIntro from "../SectionIntro.astro";
+import { md } from "../../lib/site";
+type Props = z.infer<typeof tabs>;
+const { eyebrow, heading, items, id } = Astro.props;
+const plus = `<svg class="w-2 h-2" width="8" height="9" viewBox="0 0 8 9" fill="none"><path d="M4 1.5V7.5M7 4.5L1 4.5" stroke="#333333" stroke-width="2" stroke-linecap="round" /></svg>`;
+const minus = `<svg class="w-2 h-2" width="8" height="9" viewBox="0 0 8 9" fill="none"><path d="M7 4.5L1 4.5" stroke="#333333" stroke-width="2" stroke-linecap="round" /></svg>`;
+---
+<div id={id} class="pb-2 pt-16 md:pb-6 md:pt-18 md:px-2 lg:px-1 xl:bg-gray-200 xl:px-0 lg:pt-31 xl:pb-18 flex flex-col gap-y-14 md:gap-y-20 scroll-mt-20"
+  x-data="{ active: window.innerWidth >= 1200 ? 0 : null }"
+  @resize.window.debounce.150ms="if (window.innerWidth >= 1200 && active === null) active = 0">
+  <div class="container"><SectionIntro {eyebrow} {heading} /></div>
+  <div class="container xl:grid xl:grid-cols-[minmax(0,1fr)_823px] xl:gap-x-10 xl:items-center">
+    <div class="flex flex-col gap-y-2 xl:gap-0">
+      {items.map((item, i) => (
+        <div class="bg-gray-200 rounded-lgx overflow-hidden">
+          <button type="button" class="flex w-full items-center justify-between py-7 px-6 font-bold text-gray-500 text-basex cursor-pointer md:text-xlx md:leading-13 md:px-8 md:py-6 lg:px-10 xl:ml-27 xl:py-7 xl:px-0 transition-colors"
+            :class={`active === ${i} ? '' : 'xl:text-gray-350 xl:hover:text-gray-500'`}
+            :aria-expanded={`active === ${i}`}
+            @click={`active = (window.innerWidth < 1200 && active === ${i}) ? null : ${i}`}>
+            <h3 class="m-0 text-left">{item.title}</h3>
+            <span class="w-6 h-6 flex flex-none items-center justify-center rounded-full border-2 border-gray-500 xl:hidden" aria-hidden="true">
+              <span x-show={`active !== ${i}`} set:html={plus} /><span x-show={`active === ${i}`} x-cloak set:html={minus} />
+            </span>
+          </button>
+          <!-- Mobile/tablet: inline panel -->
+          <div class="xl:hidden" x-show={`active === ${i}`} x-collapse x-cloak>
+            <div class="mx-3 pb-6 md:mx-8 md:pb-14 lg:mx-18 text-smx leading-7 text-gray-400 flex flex-col gap-y-6 [&_a]:underline" set:html={md(item.body)} />
+          </div>
+        </div>
+      ))}
+    </div>
+    <!-- Desktop: shared panel -->
+    <div class="hidden xl:flex xl:items-center xl:min-h-[360px]">
+      {items.map((item, i) => (
+        <div x-show={`active === ${i}`} x-cloak={i > 0 ? "" : undefined} x-transition.opacity.duration.500ms
+          class="mx-8 text-smx leading-7 text-gray-400 flex flex-col gap-y-8 [&_a]:underline" set:html={md(item.body)} />
+      ))}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+title: Contact
+description: Get in touch with Vigo about a new digital product, a relaunch or a UX problem. We normally reply within 24 hours.
+
+blocks:
+  - type: contactHero
+    greeting:
+      - Hi there.
+      - Thank you for reaching out.
+    methods:
+      - { icon: at, label: hello@vigodigital.co, href: "mailto:hello@vigodigital.co" }
+      - { icon: phone, label: "+44 (0) 203 576 3527", href: "tel:+442035763527" }
+      - { icon: location-pin, label: "Vigo, 33 Foley St, London, W1W 7TL", href: "https://www.google.com/maps/dir//Vigo+Projects+Ltd.,+Work.life,+33+Foley+St,+London+W1W+7TL" }
+
+  - type: contactForm
+    heading: Let us know how we can help...
+    body: Every project is unique, but they all start with that important first step. To get the ball rolling, leave us your contact information and a basic outline of your project or problem; as much or as little as you like.

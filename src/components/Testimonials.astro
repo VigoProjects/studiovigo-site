@@ -1,0 +1,35 @@
+---
+/** Featured quote (large) + grid of the rest. Data: src/content/testimonials.yaml */
+import { getCollection } from "astro:content";
+const all = (await getCollection("testimonials")).map((t) => t.data);
+const featured = all.find((t) => t.featured) ?? all[0];
+const rest = all.filter((t) => t !== featured);
+const avatar = (logo: string | undefined, bg: string) =>
+  `<div class="bg-gray-500 clip-rounded-square flex-none text-sm w-9.5 h-9.5 flex justify-center items-center after:h-8.5 after:w-8.5 after:block after:clip-rounded-square after:absolute after:-z-10 after:${bg}">${logo ? `<img src="${logo}" alt="" loading="lazy" class="w-8.5 h-8.5 clip-rounded-square object-contain">` : ""}</div>`;
+---
+{featured && (
+  <div class="flex flex-col xl:flex-row">
+    <figure class="px-4 py-6 bg-gray-100 rounded-lgx md:p-14 xl:flex xl:flex-col xl:justify-between xl:max-w-[40%]">
+      <blockquote class="mb-5">
+        <img src="/assets/illustrations/quote-open.svg" alt="" class="w-3 inline -translate-y-2.5" />
+        <p class="text-lgx font-bold inline text-gray-500 md:text-lg2x">{featured.quote}</p>
+        <img src="/assets/illustrations/quote-close.svg" alt="" class="w-3 inline -translate-y-2.5" />
+      </blockquote>
+      <figcaption class="flex items-center gap-x-4">
+        <Fragment set:html={avatar(featured.logo, "bg-gray-100")} />
+        <div><p class="text-smx font-bold text-gray-500">{featured.name}</p><p class="text-sm text-gray-500">{featured.role}</p></div>
+      </figcaption>
+    </figure>
+    <div class="md:grid md:grid-cols-2 md:m-14 md:gap-y-10 md:gap-x-14">
+      {rest.map((t) => (
+        <figure class="px-4 py-6 md:p-0">
+          <blockquote class="mb-5"><div class="text-smx leading-7 text-gray-400">{t.quote}</div></blockquote>
+          <figcaption class="flex items-center gap-x-4">
+            <Fragment set:html={avatar(t.logo, "bg-gray-200")} />
+            <div><p class="text-smx font-bold text-gray-500">{t.name}</p><p class="text-sm text-gray-500">{t.role}</p></div>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+)}

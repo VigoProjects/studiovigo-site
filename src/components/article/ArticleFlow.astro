@@ -1,0 +1,17 @@
+---
+/** Vertical flow that long-form content sits in. Optional themed parallax decorations. */
+import { themes, type Theme } from "../../lib/themes";
+interface Props { theme?: Theme }
+const { theme } = Astro.props;
+const decor = theme ? themes[theme] : undefined;
+---
+<div class="relative" x-data={decor ? "{ scrollY: 0, init() { window.addEventListener('scroll', () => { this.scrollY = window.scrollY; }, { passive: true }); } }" : undefined}>
+  <div class="py-14 md:py-22 xl:py-31 flex flex-col items-center gap-y-17 xl:gap-y-25">
+    <slot />
+  </div>
+  {decor?.decorations.map((d) => (
+    <img src={`/permanent-assets/${decor.folder}/${d.src}`} alt="" aria-hidden="true"
+      class={`hidden xl:block absolute -z-10 motion-reduce:!transform-none ${d.class}`}
+      :style={`'transform: translateY(' + scrollY * ${d.speed} + 'px)'`} />
+  ))}
+</div>

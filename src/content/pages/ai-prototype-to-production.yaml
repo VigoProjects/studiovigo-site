@@ -1,0 +1,111 @@
+title: AI Prototype to Production for Enterprise
+metaTitle: AI Prototype to Production for Enterprise
+description: Built a prototype with Lovable, Replit or Claude Code? We turn AI-built prototypes into secure, scalable products your security team will sign off.
+blocks:
+  - type: hero
+    eyebrow: AI Prototype to Production for Enterprise
+    heading: You built it with AI.
+    highlight: We make it a product.
+    body: Your team has a working prototype from Lovable, Replit or Claude Code, and people want it live. We turn AI-built prototypes into secure, scalable software your security team will sign off, without throwing away what already works.
+    cta:
+      label: Talk to us
+      href: /contact
+    video: /assets/morphing-graphic-%281080%29.mp4
+  - type: logos
+    heading: Trusted by organisations including Bloomberg, AARP and the Open Data Institute.
+    items:
+      - src: /assets/logo1.png
+        alt: ""
+      - src: /assets/logo2.png
+        alt: ""
+      - src: /assets/logo3.png
+        alt: ""
+      - src: /assets/logo4.png
+        alt: ""
+      - src: /assets/logo5.png
+        alt: ""
+      - src: /assets/logo6.png
+        alt: ""
+      - src: /assets/logo-odi-compact.png
+        alt: ""
+      - src: /assets/bloomberg-logo.webp
+        alt: ""
+  - type: prose
+    eyebrow: The prototype worked. Production is a different question.
+    body: |-
+      AI tools took your idea from a slide to a clickable product in days. That's real progress, and it's not to be thrown away.
+
+      But a prototype that shines in a demo usually hasn't faced the questions production asks. Who can see which data? Where do the API keys live? What happens with ten thousand users instead of ten? Who maintains it when the person who prompted it moves on?
+  - type: stats
+    items:
+      - value: 44%
+        label: of AI code generation tasks produce code with a known security vulnerability
+  - type: prose
+    eyebrow: Our approach
+    heading: AI speed, human judgement.
+    body: |-
+      We keep what your prototype proved and rebuild what it can't carry.
+
+      The user flows and interface usually survive, because that's where the validated thinking lives. Authentication, data handling and integrations get rebuilt to your standards, by engineers who can explain every line. We use AI ourselves to move quickly on everything else, inside your security boundary rather than around it.
+
+      The result is the product your stakeholders already liked, built so it can actually go live.
+  - type: cards
+    heading: From prototype to production in four stages
+    items:
+      - icon: list-check
+        title: Prototype audit
+        body: We map what your prototype touches, review the code and its security, and show you what to keep, refactor or rebuild, with costed options. Fixed scope, fixed price.
+      - icon: chart-diagram
+        title: Architecture and security design
+        body: We agree the target architecture and hosting with your security and architecture teams before any build starts, so sign-off isn't a surprise at the end.
+      - icon: toolbox
+        title: Harden and rebuild
+        body: Production code, automated tests and a delivery pipeline with secret scanning and dependency checks built in. Accessibility and performance tested, not assumed.
+      - icon: rocket-launch
+        title: Launch and handover
+        body: A documented codebase in your repository, a design system set up as tokens, and project rules your team's AI tools can follow, so the product can grow safely after we step back.
+  - type: prose
+    eyebrow: Built for enterprises that can't risk their code or data.
+    body: |-
+      Most AI risk comes from how tools are used, not the tools themselves. We only use AI under commercial terms that exclude training on your code, with zero data retention or models running in your own cloud where the work calls for it. Sensitive modules can be built with no AI involvement at all.
+
+      Your code stays yours. Nothing goes through personal accounts, and nothing trains anyone's model.
+  - type: list
+    eyebrow: What you walk away with
+    items:
+      - An audit report rating each part of the prototype as keep, refactor or rebuild
+      - Security findings ranked by severity, with fixes agreed before build
+      - A production codebase in your own repository and cloud
+      - Automated tests and a delivery pipeline your team can run
+      - A design system documented as tokens, ready for people and AI tools to build from
+      - Handover sessions with your engineers, so nothing depends on us
+  - type: list
+    eyebrow: Is this you?
+    items:
+      - An innovation team with a prototype stakeholders love and the security team hasn't seen yet
+      - A product lead who has inherited something AI-built by a contractor or a former colleague
+      - An organisation in a regulated sector such as insurance, life sciences or financial services, where an audit trail isn't optional
+      - A technology leader who wants AI in delivery without opening a new risk register
+  - type: stats
+    heading: Products that hold up in the real world
+    items:
+      - value: 26%
+        label: reduction in cart abandonment after redesigning a complex e-commerce product ecosystem - Catchbox
+      - value: 42%
+        label: reduction in time on task for expert users - Benchmark Estimating
+  - type: contactForm
+    heading: Got a prototype people already want?
+    body: Tell us what you've built and where it needs to go. We'll come back with an honest view of what it takes to get it into production.
+  - type: faq
+    heading: Questions we get asked
+    items:
+      - q: Do you have to rebuild everything?
+        a: No. The audit tells you exactly what's worth keeping. Interfaces and user flows often survive almost intact. The parts that touch data, logins and other systems are where rebuilding usually pays off.
+      - q: Which AI tools' prototypes can you work with?
+        a: Prototypes from Lovable, Replit, Bolt, v0, Cursor and Claude Code, and hand-written ones too. Most use common web stacks. If yours doesn't, the audit will say so early.
+      - q: Will our code be used to train AI models?
+        a: No. We only use AI tools under commercial terms that exclude training, and we can work entirely inside your own cloud.
+      - q: Can the finished product run in our own cloud?
+        a: Yes. We deploy to the environment your organisation already uses and approves.
+      - q: What if the prototype isn't worth saving?
+        a: We'll tell you. The ideas and research behind it rarely go to waste, even when the code does.

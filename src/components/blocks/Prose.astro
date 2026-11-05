@@ -1,19 +1,22 @@
 ---
+/** Text section (Markdown) with optional glow-framed image alongside. */
 import type { z } from "astro/zod";
 import type { prose } from "../../content/blocks";
-import Section from "../Section.astro";
-import Eyebrow from "../Eyebrow.astro";
+import GlowCard from "../GlowCard.astro";
 import { md } from "../../lib/site";
 type Props = z.infer<typeof prose>;
 const { eyebrow, heading, body, image, id, background } = Astro.props;
+const html = (eyebrow ? `<h2>${eyebrow}</h2>` : "") + (heading ? `<h3>${heading}</h3>` : "") + md(body);
 ---
-<Section id={id} background={background}>
-  <div class:list={["grid gap-10", image && "lg:grid-cols-2 lg:items-center"]}>
-    <div class="flex max-w-3xl flex-col gap-y-5">
-      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-      {heading && <h2 class="text-3xl font-bold text-gray-500 md:text-4xl">{heading}</h2>}
-      <div class="prose prose-gray max-w-none text-smx text-gray-500" set:html={md(body)} />
-    </div>
-    {image && <img src={image.src} alt={image.alt} class="w-full rounded-3xl object-cover" loading="lazy" />}
+<div id={id} class:list={["section-spacing container py-14 lg:py-18 xl:py-31 scroll-mt-20", background === "grey" && "bg-gray-200"]}>
+  <div class="flex flex-col gap-y-10 md:gap-x-14 lg:gap-x-20 md:items-center md:flex-col lg:flex-row">
+    <div class="rich-text flex-1 flex flex-col gap-y-6" set:html={html} />
+    {image && (
+      <div class="flex-1 w-full">
+        <GlowCard class="mx-auto" innerClass="aspect-3/2">
+          <img src={image.src} alt={image.alt} class="w-full h-full object-cover" loading="lazy" />
+        </GlowCard>
+      </div>
+    )}
   </div>
-</Section>
+</div>

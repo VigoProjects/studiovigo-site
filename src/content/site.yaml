@@ -26,7 +26,16 @@ cta:
   label: Get in Touch
   href: /contact
 
+# Case studies shown as thumbnails in the header menu (slugs, in order).
+menuCaseStudies: [benchmark_carbon, catchbox, anthony-ellis]
+
+cookieMessage: We use cookies for analytics and marketing. No data is shared with third parties.
+
 analytics:
+  # Google Tag Manager — only loads after the visitor clicks "Accept All".
   gtm: GTM-WC36BZ5K
+
+# Clutch review badge in the footer (remove to hide).
+clutchCompanyId: "2156962"
 
 fontAwesomeKit: 55a5374d7e

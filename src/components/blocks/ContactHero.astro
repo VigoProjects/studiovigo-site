@@ -1,0 +1,24 @@
+---
+import type { z } from "astro/zod";
+import type { contactHero } from "../../content/blocks";
+type Props = z.infer<typeof contactHero> & { isPageTitle?: boolean };
+const { greeting, methods, id, isPageTitle = true } = Astro.props;
+const Tag = isPageTitle ? "h1" : "div";
+---
+<div id={id} class="relative group overflow-hidden bg-white z-10">
+  <div class="absolute inset-0 -top-5 -z-10 gradient-hero h-25 opacity-100 blur-2xl"></div>
+  <div class="absolute inset-0 -z-10 gradient-hero h-50 opacity-20 blur-4xl"></div>
+  <div class="container pt-22 pb-12.5 md:pb-20 xl:pt-44 xl:pb-16 items-center flex flex-col gap-y-12.5 md:px-24 xl:px-0 md:items-start md:gap-y-10.5 xl:flex-row xl:justify-between xl:items-center">
+    <Tag class="text-2xlx xl:text-4xlx text-gray-500 font-bold px-3 leading-tight text-center md:text-left md:px-0 pt-10 md:pt-0">
+      {greeting.map((line) => <span class="block">{line}</span>)}
+    </Tag>
+    <div class="flex flex-col gap-y-4 px-2 md:px-0">
+      {methods.map((m) => (
+        <a href={m.href} target={m.href.startsWith("http") ? "_blank" : undefined} rel={m.href.startsWith("http") ? "noopener" : undefined} class="flex gap-x-3.5 items-center">
+          <div class="text-white bg-gray-500 clip-rounded-square text-sm w-8.5 h-8.5 flex flex-none justify-center items-center"><i class={`fa-solid fa-${m.icon}`} aria-hidden="true"></i></div>
+          <p class="text-smx font-bold text-gray-500">{m.label}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</div>
