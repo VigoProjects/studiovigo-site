@@ -1,0 +1,115 @@
+title: Home
+description: Vigo is a digital product agency that digs deep into complex data, systems and user journeys to design digital products people actually want to use.
+
+blocks:
+  - type: hero
+    eyebrow: Digital Product Agency for Complex Systems & Big Data
+    heading: Great products aren't just made,
+    highlight: they're evolved.
+    body: We turn complex data and systems into digital products people love to use, with strategy-led discovery, UX design and front-end development. From first insight through to post-launch optimisation.
+    cta: { label: Get in Touch, href: /contact }
+    video: /assets/morphing-graphic-%281080%29.mp4
+
+  - type: logos
+    heading: "Trusted by organisations including:"
+    items:
+      - { src: /assets/logo1.png, alt: "" }
+      - { src: /assets/logo2.png, alt: "" }
+      - { src: /assets/logo3.png, alt: "" }
+      - { src: /assets/logo4.png, alt: "" }
+      - { src: /assets/logo5.png, alt: "" }
+      - { src: /assets/logo6.png, alt: "" }
+      - { src: /assets/logo-odi-compact.png, alt: Open Data Institute }
+      - { src: /assets/bloomberg-logo.webp, alt: Bloomberg }
+
+  - type: stats
+    heading: Our product success in numbers
+    body: We agree how success will be measured before design starts, then check it once real users arrive. These are the results from four recent Vigo projects, from a legacy estimating platform to a product configurator.
+    items:
+      - { value: "42%", label: less time on task after a four-week legacy UI uplift }
+      - { value: "98%", label: of users preferred the redesigned interface }
+      - { value: "26%", label: drop in cart abandonment on a redesigned configurator }
+      - { value: "87%", label: faster site speed on a custom map-led portfolio }
+
+  - type: prose
+    id: about
+    eyebrow: What a digital product studio does
+    body: |
+      A digital product studio designs and builds the software people use every day: customer portals, SaaS platforms, internal tools and e-commerce journeys that need more than a marketing website. The work runs from research and strategy through interface design and front-end development, and carries on after launch.
+
+      Vigo does all of that with a small senior team. Strategy, UX and UI design and front-end engineering sit together from day one, so the layouts we test are the layouts that get built, and the metrics we agree in discovery are the ones we report on after launch.
+    image: { src: /assets/2025-11-06-17.14.23.jpg, alt: The Vigo team at work }
+
+  - type: steps
+    heading: From UX concept to post-launch measurement, under one roof
+    items:
+      - title: Discover and define
+        body: Stakeholder interviews, user observation, journey mapping and agreed success metrics before any design starts. For [Catchbox](/case-studies/catchbox) we visited the factory in Latvia and interviewed staff, distributors and sales teams.
+      - title: UX concept and page layouts
+        body: "Wireframes, tested prototypes and production-ready Figma designs built on a component library. Example: two Catchbox wireframe concepts were tested against each other with users from broadcasting, AV and education."
+      - title: Build and launch
+        body: Front-end development in React or Webflow, or design handed to your engineers with a developer embedded alongside them. For example, [benchmark's uplift shipped in four weeks](/case-studies/legacy-application-ui-uplift) without a single architecture change.
+      - title: Measure and optimise
+        body: Analytics set-up, before-and-after benchmarks, UX audits and conversion work once real users arrive. Like [Benchmark's core journeys now take an average of 19.1 fewer clicks.](/case-studies/legacy-application-ui-uplift)
+
+  - type: services
+    id: services
+    eyebrow: Design services
+    heading: Three core services to take your digital product from idea to reality.
+    items:
+      - { title: Product Strategy, body: Defining direction. Aligning teams. Delivering clarity and confidence., href: /product-strategy }
+      - { title: Prototyping, body: The power of expanding a vision and aligning thoughts., href: /discovery-prototyping }
+      - { title: UX & UI Design, body: Turning complex challenges into clear, elegant experiences., href: /uxui-design }
+    allHeading: All Services
+    allBody: A complete range of services to assist in the entire digital product lifecycle.
+    allItems:
+      - Design & Prototyping
+      - Business & User Analysis
+      - Engineering & Deployment
+      - Consulting
+      - Performance Optimisation
+
+  - type: list
+    eyebrow: Who we work with
+    items:
+      - "**Enterprise teams modernising legacy platforms**, including infrastructure cost estimating used across the UK, Australia and New Zealand"
+      - "**SaaS companies** with expert users and dense data, such as Benchmark's PAS 2080 carbon estimating tool"
+      - "**Regulated and clinical products**, such as the Axivera clinical trials platform"
+      - "**E-commerce businesses with complex catalogues**, such as Catchbox's configurable microphone ecosystem"
+
+  - type: caseStudies
+    id: case-studies
+    background: grey
+    eyebrow: Our Work
+    heading: Collaborating with clients big and small to craft meaningful digital products
+    featured: [benchmark_carbon, catchbox, anthony-ellis]
+    showTestimonials: true
+
+  - type: list
+    eyebrow: Why product teams choose Vigo
+    items:
+      - "**Senior people do the work.** Benchmark's uplift was delivered by a team of three: a senior designer, a product strategist and a front-end developer."
+      - "**Developers are in the design room.** Every concept is checked for feasibility while it is drawn, not after handover."
+      - "**We work inside your stack.** [Benchmark](/case-studies/benchmark_carbon) kept their existing codebase and engineering teams."
+      - "**We report numbers.** Each engagement agrees what success looks like up front and measures it after launch."
+
+  - type: contactForm
+    heading: Planning a relaunch or a new product?
+    body: Tell us what you're working on, as much or as little as you like. We normally reply within 24 hours.
+
+  - type: faq
+    heading: Frequently asked questions
+    items:
+      - q: What kind of organisations do you work with?
+        a: We partner with organisations whose products sit on top of complex data and systems, from established enterprises to scaling startups. If your challenge involves untangling complexity and turning it into something people genuinely want to use, we are a good fit.
+      - q: What services do you offer?
+        a: "We cover the full digital product lifecycle: strategy-led discovery, UX and interface design, design systems, front-end development, and post-launch optimisation. We can lead a project end to end or slot into your existing team where you need us most."
+      - q: How does a typical project start?
+        a: Most engagements begin with a discovery phase. We dig into your data, systems and users to build a clear, shared understanding before any design or build work begins, so every decision that follows is grounded in evidence.
+      - q: Do you work with existing products or only new builds?
+        a: Both. We launch new products from scratch and we improve, replatform and optimise existing ones. Whether you are releasing an MVP or evolving a mature product, we focus on stability, performance and measurable user impact.
+
+  - type: insights
+    eyebrow: Insights
+    heading: Our latest Insights
+    limit: 3

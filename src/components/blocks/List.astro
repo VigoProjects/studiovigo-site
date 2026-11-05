@@ -1,0 +1,18 @@
+---
+import type { z } from "astro/zod";
+import type { list } from "../../content/blocks";
+import Section from "../Section.astro";
+import Eyebrow from "../Eyebrow.astro";
+import { mdInline } from "../../lib/site";
+type Props = z.infer<typeof list>;
+const { eyebrow, heading, items, id, background } = Astro.props;
+---
+<Section id={id} background={background}>
+  <div class="flex max-w-3xl flex-col gap-y-6">
+    {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+    {heading && <h2 class="text-3xl font-bold text-gray-500 md:text-4xl">{heading}</h2>}
+    <ul class="flex list-disc flex-col gap-y-3 pl-5 text-smx text-gray-500 marker:text-gray-350 [&_a]:underline [&_strong]:font-bold">
+      {items.map((i) => <li set:html={mdInline(i)} />)}
+    </ul>
+  </div>
+</Section>

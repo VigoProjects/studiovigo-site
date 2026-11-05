@@ -1,0 +1,15 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import CaseStudyCard from "../../components/CaseStudyCard.astro";
+const items = (await getCollection("caseStudies")).sort((a, b) => a.data.order - b.data.order);
+---
+<Base title="Case Studies" description="Some of our most recent digital product projects.">
+  <section class="bg-gray-200">
+    <div class="container pt-32 pb-14 lg:pb-31">
+      <h1 class="text-4xl font-bold text-gray-500 md:text-5xl">Case Studies</h1>
+      <p class="mt-4 text-smx text-gray-400">Some of our most recent projects. Please <a href="/contact" class="underline">contact us</a> for our complete portfolio.</p>
+      <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">{items.map((e) => <CaseStudyCard entry={e} />)}</div>
+    </div>
+  </section>
+</Base>

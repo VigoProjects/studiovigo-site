@@ -1,0 +1,13 @@
+---
+/** Every block page except home: src/content/pages/<slug>.yaml → /<slug> */
+import { getCollection } from "astro:content";
+import Base from "../layouts/Base.astro";
+import BlockRenderer from "../components/BlockRenderer.astro";
+
+export async function getStaticPaths() {
+  const pages = await getCollection("pages", (p) => p.id !== "home");
+  return pages.map((page) => ({ params: { slug: page.id }, props: { page } }));
+}
+const { title, description, ogImage, blocks } = Astro.props.page.data;
+---
+<Base {title} {description} {ogImage}><BlockRenderer {blocks} /></Base>

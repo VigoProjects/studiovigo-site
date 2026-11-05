@@ -1,0 +1,26 @@
+# Shared testimonials. Each needs a unique id.
+- id: lovegunn
+  quote: I Just wanted to say a massive thank you to you and the team for your hard work this year! The site is looking amazing, and the SEO/load speeds are very impressive!
+  name: Adam Glazer-Creed
+  role: Client Director - LoveGunn
+  logo: /assets/lovegunn-logo.jpeg
+- id: stakk
+  quote: Vigo's work surpassed the client's expectations. The platform's UI/UX design contributed to higher user engagement and satisfaction, increasing conversions and user loyalty as well. Vigo had effective communication with the client, provided timely updates, and delivered work on time and on budget.
+  name: Jack Tyson
+  role: Founder, Stakk
+  logo: /assets/bystakk_logo.jpeg
+- id: elkstone
+  quote: Vigo supported us in the design, development and launch of a suite of digital products and were responsive, talented and great fun to work with. Thanks for all your help guys.
+  name: Mark Swaine
+  role: Head of Product
+  logo: /assets/elkstone-social-logo-.png
+- id: aarp
+  quote: Vigo are a great partner to work with. Trusted, responsive and hugely knowledgable. A hard act to follow for sure.
+  name: Suzanne Myklebust
+  role: Director of Communications
+  logo: /assets/aarp-logo.jpeg
+- id: sophia
+  quote: Wow! Vigo were so great to work with and have delivered the most fantastic website on time and within budgets.
+  name: Matile D'Amelio
+  role: CEO
+  logo: /assets/sophiatrainingconsulting_logo.jpeg

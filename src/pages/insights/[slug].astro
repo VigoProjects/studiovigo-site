@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Button from "../../components/Button.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("insights", (e) => !e.data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+const { post } = Astro.props;
+const d = post.data;
+const { Content } = await render(post);
+const date = d.date.toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" });
+const schema = {
+  "@context": "https://schema.org", "@type": "Article",
+  headline: d.title, datePublished: d.date.toISOString(),
+  author: { "@type": "Person", name: d.author },
+  publisher: { "@type": "Organization", name: "Vigo Projects Limited" },
+};
+---
+<Base title={d.title} description={d.description ?? d.excerpt} ogImage={d.image} type="article">
+  <article class="container max-w-3xl pt-32 pb-14 lg:pb-24">
+    <p class="text-xs text-gray-400">{d.author} | {date}</p>
+    <h1 class="mt-4 text-4xl font-bold text-gray-500 md:text-5xl md:leading-tight">{d.title}</h1>
+    {d.image && <img src={d.image} alt="" class="mt-10 w-full rounded-3xl object-cover" />}
+    <div class="prose prose-gray mt-10 max-w-none prose-headings:text-gray-500 prose-a:text-gray-500"><Content /></div>
+    <div class="mt-14"><Button href="/insights" variant="light">← All Insights</Button></div>
+  </article>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</Base>

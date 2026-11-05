@@ -1,0 +1,59 @@
+# One-off import of the current Statamic site (studiovigo.co.uk) into legacy/.
+# Runs on GitHub's servers, mirrors every page plus its CSS, fonts, images and
+# video, then commits the result so the rebuild can port content and assets exactly.
+# Safe to delete this workflow (and legacy/) once the new site is live.
+name: Import legacy site
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/import-legacy.yml"
+      - "scripts/legacy-urls.txt"
+
+permissions:
+  contents: write
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Mirror studiovigo.co.uk
+        run: |
+          rm -rf legacy && mkdir -p legacy
+          cd legacy
+          # Mirror the crawlable site with all page requisites (CSS, JS, fonts, images, video)
+          wget --mirror --page-requisites --adjust-extension --no-parent \
+               --domains studiovigo.co.uk --reject-regex '/!/' \
+               --wait=0.5 --random-wait --tries=3 --timeout=30 \
+               -e robots=off --user-agent="VigoSiteImport/1.0" \
+               https://studiovigo.co.uk/ || true
+          # Also fetch any URLs listed explicitly (pages or assets the crawl might miss)
+          if [ -f ../scripts/legacy-urls.txt ]; then
+            wget --force-directories --page-requisites --adjust-extension \
+                 --tries=3 --timeout=30 -e robots=off --user-agent="VigoSiteImport/1.0" \
+                 -i ../scripts/legacy-urls.txt || true
+          fi
+          # Fetch fonts and images referenced from the compiled CSS
+          for css in $(find . -name '*.css'); do
+            grep -oE 'url\([^)]+\)' "$css" | sed -E 's/url\(["'"'"']?//; s/["'"'"']?\)$//' \
+              | grep -E '^/' | sed 's#^#https://studiovigo.co.uk#' >> ../css-assets.txt || true
+          done
+          if [ -s ../css-assets.txt ]; then
+            sort -u ../css-assets.txt | wget --force-directories --tries=3 --timeout=30 \
+              -e robots=off --user-agent="VigoSiteImport/1.0" -i - || true
+          fi
+          cd ..
+          find legacy -type f | sed 's#^legacy/##' | sort > legacy/MANIFEST.txt
+          echo "Files: $(wc -l < legacy/MANIFEST.txt)"; du -sh legacy
+
+      - name: Commit legacy snapshot
+        run: |
+          git config user.name "legacy-import[bot]"
+          git config user.email "legacy-import@users.noreply.github.com"
+          git add legacy
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "Import legacy site snapshot into legacy/"
+          git push

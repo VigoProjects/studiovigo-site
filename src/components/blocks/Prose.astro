@@ -1,0 +1,19 @@
+---
+import type { z } from "astro/zod";
+import type { prose } from "../../content/blocks";
+import Section from "../Section.astro";
+import Eyebrow from "../Eyebrow.astro";
+import { md } from "../../lib/site";
+type Props = z.infer<typeof prose>;
+const { eyebrow, heading, body, image, id, background } = Astro.props;
+---
+<Section id={id} background={background}>
+  <div class:list={["grid gap-10", image && "lg:grid-cols-2 lg:items-center"]}>
+    <div class="flex max-w-3xl flex-col gap-y-5">
+      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+      {heading && <h2 class="text-3xl font-bold text-gray-500 md:text-4xl">{heading}</h2>}
+      <div class="prose prose-gray max-w-none text-smx text-gray-500" set:html={md(body)} />
+    </div>
+    {image && <img src={image.src} alt={image.alt} class="w-full rounded-3xl object-cover" loading="lazy" />}
+  </div>
+</Section>

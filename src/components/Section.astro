@@ -1,0 +1,8 @@
+---
+/** Shared wrapper giving every block consistent spacing, anchor and background. */
+interface Props { id?: string; background?: "white" | "grey"; class?: string; wide?: boolean }
+const { id, background = "white", class: cls = "", wide = false } = Astro.props;
+---
+<section id={id} class:list={[background === "grey" && "bg-gray-200", "scroll-mt-24"]}>
+  <div class:list={[!wide && "container", "py-14 md:py-18 lg:py-31", cls]}><slot /></div>
+</section>

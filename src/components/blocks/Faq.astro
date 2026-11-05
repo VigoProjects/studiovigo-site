@@ -1,0 +1,28 @@
+---
+import type { z } from "astro/zod";
+import type { faq } from "../../content/blocks";
+import Section from "../Section.astro";
+import { md } from "../../lib/site";
+type Props = z.infer<typeof faq>;
+const { heading, items, id, background } = Astro.props;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: items.map((i) => ({ "@type": "Question", name: i.q, acceptedAnswer: { "@type": "Answer", text: i.a } })),
+};
+---
+<Section id={id} background={background} class="flex flex-col gap-y-10 md:gap-y-14">
+  <h2 class="text-3xl font-bold text-gray-500 md:text-4xl">{heading}</h2>
+  <div class="divide-y divide-gray-250 border-y border-gray-250">
+    {items.map((i) => (
+      <details class="group py-6">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-6 text-lgx font-bold text-gray-500">
+          {i.q}
+          <span class="text-2xl transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+        </summary>
+        <div class="prose prose-gray mt-4 max-w-3xl text-smx text-gray-400" set:html={md(i.a)} />
+      </details>
+    ))}
+  </div>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</Section>

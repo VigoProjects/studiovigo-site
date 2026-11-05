@@ -1,0 +1,19 @@
+---
+import type { z } from "astro/zod";
+import type { steps } from "../../content/blocks";
+import Section from "../Section.astro";
+import { md } from "../../lib/site";
+type Props = z.infer<typeof steps>;
+const { heading, items, id, background } = Astro.props;
+---
+<Section id={id} background={background}>
+  <h2 class="max-w-3xl text-3xl font-bold text-gray-500 md:text-4xl">{heading}</h2>
+  <ol class="mt-10 grid gap-6 md:mt-14 md:grid-cols-2">
+    {items.map((s, i) => (
+      <li class="flex flex-col gap-y-3 rounded-3xl border border-gray-250 p-8">
+        <h3 class="text-xlx font-bold text-gray-500">{i + 1}. {s.title}</h3>
+        <div class="prose prose-gray max-w-none text-sm text-gray-400 prose-a:text-gray-500" set:html={md(s.body)} />
+      </li>
+    ))}
+  </ol>
+</Section>

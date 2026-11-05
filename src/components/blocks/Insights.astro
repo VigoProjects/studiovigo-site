@@ -1,0 +1,24 @@
+---
+import type { z } from "astro/zod";
+import type { insights } from "../../content/blocks";
+import { getCollection } from "astro:content";
+import Section from "../Section.astro";
+import Eyebrow from "../Eyebrow.astro";
+import Button from "../Button.astro";
+import InsightCard from "../InsightCard.astro";
+type Props = z.infer<typeof insights>;
+const { eyebrow, heading, limit, id, background } = Astro.props;
+const posts = (await getCollection("insights", (e) => !e.data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, limit);
+---
+<Section id={id} background={background} class="flex flex-col gap-y-14 md:gap-y-20">
+  <div class="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+    <div class="flex flex-col gap-y-4">
+      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+      <h2 class="text-3xl font-bold text-gray-500 md:text-4xl">{heading}</h2>
+    </div>
+    <Button href="/insights" variant="light">All Insights</Button>
+  </div>
+  <div class="grid gap-10 md:grid-cols-3">{posts.map((p) => <InsightCard entry={p} />)}</div>
+</Section>

@@ -1,0 +1,26 @@
+---
+import { site } from "../lib/site";
+import Button from "./Button.astro";
+const contact = site.nav.find((n) => n.href === "/contact");
+const links = site.nav.filter((n) => n.href !== "/contact");
+---
+<header class="pointer-events-none fixed inset-x-0 top-0 z-50 flex items-start justify-between">
+  <a href="/" aria-label="Vigo home"
+     class="pointer-events-auto block rounded-br-3xl bg-gray-600 px-5 py-4 [clip-path:polygon(0_0,100%_0,82%_100%,0_100%)] pr-10">
+    <img src="/assets/vigo-logo-white.svg" alt="Vigo" class="h-9 w-auto" width="60" height="36" />
+  </a>
+
+  <div class="pointer-events-auto flex items-center gap-x-5 rounded-bl-3xl bg-gray-600 py-3 pr-3 pl-10 [clip-path:polygon(12%_0,100%_0,100%_100%,0_100%)]">
+    <details class="group relative">
+      <summary class="cursor-pointer list-none p-2 text-white" aria-label="Menu">
+        <svg viewBox="0 0 20 14" class="h-3.5 w-5" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+          <path d="M0 1h20M0 7h20M0 13h20" />
+        </svg>
+      </summary>
+      <nav class="absolute right-0 mt-4 flex min-w-48 flex-col gap-y-1 rounded-2xl bg-white p-3 shadow-xl">
+        {links.map((l) => <a href={l.href} class="rounded-lg px-3 py-2 text-sm font-medium text-gray-500 hover:bg-gray-200">{l.label}</a>)}
+      </nav>
+    </details>
+    {contact && <Button href={contact.href} variant="light" class="!ring-white !bg-transparent !text-white !shadow-none">{contact.label}</Button>}
+  </div>
+</header>

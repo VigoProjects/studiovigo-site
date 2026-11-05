@@ -1,0 +1,18 @@
+---
+/** Pill button used across the site. variant: dark (default) | light */
+interface Props { href: string; variant?: "dark" | "light"; class?: string }
+const { href, variant = "dark", class: cls = "" } = Astro.props;
+const styles = {
+  dark: "bg-gray-500 text-white hover:bg-gray-600",
+  light: "bg-white text-gray-500 ring-1 ring-gray-500 hover:bg-gray-100",
+};
+---
+<a
+  href={href}
+  class:list={[
+    "inline-flex w-fit items-center gap-x-3 rounded-full px-5 py-2.25 text-sm leading-snug font-medium",
+    "shadow-[0_0_0_4px_rgb(255_255_255/0.6)] transition-[background-color,color,box-shadow] duration-500 ease-in-out hover:shadow-[0_0_0_6px_rgb(255_255_255/0.8)]",
+    styles[variant],
+    cls,
+  ]}
+><slot /></a>

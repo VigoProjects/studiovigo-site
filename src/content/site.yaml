@@ -1,0 +1,32 @@
+# Global site settings: navigation, footer, offices, closing CTA, analytics.
+name: Vigo
+company: Vigo Projects Limited
+tagline: Vigo is a digital product agency that digs deep into complex data, systems and user journeys to design digital products people actually want to use.
+
+nav:
+  - { label: Services, href: "/#services" }
+  - { label: About, href: "/#about" }
+  - { label: Insights, href: /insights }
+  - { label: Get in Touch, href: /contact }
+
+footerNav:
+  - { label: Case Studies, href: "/#case-studies" }
+  - { label: About, href: "/#about" }
+  - { label: Contact, href: /contact }
+  - { label: Services, href: "/#services" }
+
+offices:
+  - { city: London, address: "33 Foley Street, London W1W 7TL" }
+  - { city: Manchester, address: "1 Market Street, Whaley Bridge, High Peak, Derbyshire SK23 7AA" }
+
+# Closing call-to-action shown above the footer on every page.
+cta:
+  heading: Ready to discuss a project?
+  body: Book an initial call to discuss how Vigo can work with you.
+  label: Get in Touch
+  href: /contact
+
+analytics:
+  gtm: GTM-WC36BZ5K
+
+fontAwesomeKit: 55a5374d7e
