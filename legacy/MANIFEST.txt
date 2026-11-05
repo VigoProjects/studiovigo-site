@@ -28,6 +28,12 @@ studiovigo.co.uk/assets/criteria-2.png
 studiovigo.co.uk/assets/criteria-assets.png
 studiovigo.co.uk/assets/digital_transformation_fail-(1).png
 studiovigo.co.uk/assets/elkstone-social-logo-.png
+studiovigo.co.uk/assets/frame-462.png
+studiovigo.co.uk/assets/frame-550.png
+studiovigo.co.uk/assets/frame-564.png
+studiovigo.co.uk/assets/gemini_generated_image_f3m9u3f3m9u3f3m9.png
+studiovigo.co.uk/assets/gemini_generated_image_ggvx4sggvx4sggvx.png
+studiovigo.co.uk/assets/gemini_generated_image_oc7533oc7533oc75.png
 studiovigo.co.uk/assets/image-132.png
 studiovigo.co.uk/assets/istock-1345330958.jpg
 studiovigo.co.uk/assets/john-beck-headshot-b&w.jpg
@@ -80,8 +86,11 @@ studiovigo.co.uk/assets/screenshot-2026-03-27-at-14.58.59.png
 studiovigo.co.uk/assets/screenshot-2026-03-27-at-14.59.33.png
 studiovigo.co.uk/assets/screenshot-2026-05-14-at-14.58.27.png
 studiovigo.co.uk/assets/screenshot-2026-05-15-at-08.34.51.png
+studiovigo.co.uk/assets/screenshot-2026-07-08-at-11.18.14.png
+studiovigo.co.uk/assets/screenshot-2026-07-08-at-11.21.41.png
 studiovigo.co.uk/assets/sophiatrainingconsulting_logo.jpeg
 studiovigo.co.uk/assets/test-logo.svg
+studiovigo.co.uk/assets/vigo_reading.png
 studiovigo.co.uk/build/assets/MADE TOMMY Black_PERSONAL USE-CSaXv3Nw.otf
 studiovigo.co.uk/build/assets/MADE TOMMY Bold_PERSONAL USE-DXoD6g_U.otf
 studiovigo.co.uk/build/assets/MADE TOMMY Medium_PERSONAL USE-DYDtx49f.otf
@@ -95,6 +104,7 @@ studiovigo.co.uk/case-studies/benchmark_carbon.html
 studiovigo.co.uk/case-studies/catchbox.html
 studiovigo.co.uk/case-studies/legacy-application-ui-uplift.html
 studiovigo.co.uk/contact.html
+studiovigo.co.uk/digital-product-agency-enterprise.html
 studiovigo.co.uk/discovery-prototyping.html
 studiovigo.co.uk/favicon/apple-touch-icon.png
 studiovigo.co.uk/favicon/favicon-96x96.png
