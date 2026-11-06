@@ -8,7 +8,12 @@ export interface SiteConfig {
   company: string;
   tagline: string;
   nav: { label: string; href: string }[];
-  footerNav: { label: string; href: string }[];
+  footer: {
+    intro: string;
+    contact: { label: string; href: string }[];
+    columns: { heading: string; links: { label: string; href: string }[] }[];
+    officesHeading: string;
+  };
   offices: { city: string; address: string }[];
   cta: { heading: string; body: string; label: string; href: string };
   menuCaseStudies: string[];

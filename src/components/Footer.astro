@@ -1,9 +1,11 @@
 ---
-/** Closing CTA + footer, ported from the live site. Text comes from src/content/site.yaml. */
+/** Closing CTA band + footer. Text comes from `cta`, `footer` and `offices` in src/content/site.yaml. */
 import { site } from "../lib/site";
 import Logo from "./Logo.astro";
 import Button from "./Button.astro";
 const year = new Date().getFullYear();
+/** Visible keyboard focus for every footer link. */
+const link = "rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gray-500";
 ---
 <footer class="bg-gray-200 relative overflow-hidden">
   <div class="relative group overflow-hidden bg-white z-10 transition-all duration-500 lg:hover:rounded-lgx lg:hover:scale-y-[0.9] lg:hover:scale-x-[0.98]">
@@ -19,42 +21,73 @@ const year = new Date().getFullYear();
     <img src="/permanent-assets/footer-cta-2.png" alt="" loading="lazy" class="w-1/2 md:w-1/3 xl:w-1/4 max-w-84 absolute -right-5 -bottom-2 -z-10 transition-all duration-300 lg:group-hover:scale-125" />
   </div>
 
-  <div class="container bg-gray-200 pt-16 pb-31 md:py-10 xl:pt-20 xl:pb-6">
-    <div class="flex flex-col gap-y-14 md:gap-y-18 xl:gap-y-16 text-center items-center">
-      <div class="flex flex-col gap-y-14 md:gap-y-18 text-center items-center xl:flex-row xl:relative xl:justify-center xl:w-full">
-        <nav class="flex flex-col md:flex-row gap-y-4 md:gap-x-12 md:order-1 xl:order-0 xl:grid xl:grid-cols-2 xl:absolute xl:left-0 xl:text-left">
-          {site.footerNav.map((l) => <a href={l.href} class="text-sm text-gray-500 hover:text-gray-375 transition-colors duration-500">{l.label}</a>)}
-        </nav>
-        <div>
-          <p class="text-xs text-gray-500 mb-7 md:mb-4">
-            {site.offices.map((o, i) => <>{i > 0 && " | "}{o.city.toUpperCase()}: {o.address}</>)}
-          </p>
-          <div class="flex flex-col md:flex-row md:gap-x-9 items-center gap-y-9">
-            <img src="/assets/test-logo.svg" alt="Vigo Product Development Studio" class="w-31" loading="lazy" />
-          </div>
+  <!--
+    Footer: intro + contact on the left, link columns on the right, then a hairline and the
+    brush-script signature as a sign-off. All text comes from `footer` and `offices` in site.yaml.
+  -->
+  <div class="container pt-18 md:pt-22 xl:pt-25 pb-8">
+    <div class="grid gap-y-14 xl:grid-cols-12 xl:gap-x-10">
+      <div class="xl:col-span-5 flex flex-col gap-y-8">
+        <p class="max-w-[22rem] text-smx leading-7 text-gray-400">{site.footer.intro}</p>
+        <div class="flex flex-col items-start gap-y-2">
+          {site.footer.contact.map((c, i) => (
+            <a href={c.href} class:list={[link, i === 0 ? "text-xlx font-bold text-gray-500 hover:underline decoration-2 underline-offset-6" : "text-smx text-gray-500 hover:underline underline-offset-4"]}>{c.label}</a>
+          ))}
         </div>
         {(site.clutchCompanyId || site.footerBadges?.length) && (
-          <div class="flex flex-col items-center gap-4 md:flex-row xl:absolute xl:right-0">
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-3">
             {site.clutchCompanyId && (
-              <div id="clutch-badge" class="flex w-[213px] max-w-full justify-center">
+              <div id="clutch-badge" class="w-[213px] max-w-full">
                 <div class="clutch-widget" data-url="https://widget.clutch.co" data-widget-type="14" data-height="50" data-nofollow="true" data-expandifr="true" data-scale="100" data-clutchcompany-id={site.clutchCompanyId}></div>
                 <script is:inline src="https://widget.clutch.co/static/js/widget.js" defer></script>
               </div>
             )}
             {site.footerBadges?.map((b) => {
               // The badge art includes a soft shadow margin; -my offsets it so the pill lines up with the Clutch widget.
-              const img = <img src={b.src} alt={b.alt} class="h-[72px] w-auto -my-2.5" loading="lazy" />;
-              return b.href ? <a href={b.href} target="_blank" rel="noopener" class="block">{img}</a> : img;
+              const img = <img src={b.src} alt={b.alt} class="h-[72px] w-auto -my-2.5 -ml-2" loading="lazy" />;
+              return b.href ? <a href={b.href} target="_blank" rel="noopener" class={link}>{img}</a> : img;
             })}
           </div>
         )}
       </div>
-      <p class="text-gray-400 text-xs leading-normal md:order-1">
-        Copyright © {site.company}, {year}. <br class="md:hidden" />All Rights Reserved.
-      </p>
-      <a href="/" aria-label={`${site.name} home`} class="absolute bottom-0 flex justify-center md:right-0 after:md:right-0 after:bg-gray-600 after:w-35 after:h-18 after:md:h-24 after:clip-footer-logo after:md:clip-footer-logo-xl after:block after:absolute after:bottom-0 after:mx-auto after:transition-all after:duration-500 group hover:after:scale-110 hover:after:duration-500">
-        <Logo class="bottom-0 w-10.5 mb-2 ml-2 h-13 md:mb-3.5 md:mr-8.5 z-10 transition-all duration-500 group-hover:scale-110" pathClass="md:fill-gray-375 group-hover:md:fill-white" />
+
+      <div class="xl:col-span-7 grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-3">
+        {site.footer.columns.map((col) => (
+          <nav aria-label={col.heading}>
+            <h2 class="text-smx font-bold text-gray-500">{col.heading}</h2>
+            <ul class="mt-5 flex flex-col gap-y-3">
+              {col.links.map((l) => <li><a href={l.href} class:list={[link, "text-sm text-gray-400 hover:text-gray-500 hover:underline underline-offset-4 transition-colors duration-300"]}>{l.label}</a></li>)}
+            </ul>
+          </nav>
+        ))}
+        <div class="col-span-2 md:col-span-1">
+          <h2 class="text-smx font-bold text-gray-500">{site.footer.officesHeading}</h2>
+          <div class="mt-5 grid grid-cols-2 gap-x-8 gap-y-6 md:grid-cols-1">
+            {site.offices.map((o) => (
+              <div>
+                <p class="text-sm font-medium text-gray-500">{o.city}</p>
+                <address class="mt-1 not-italic text-sm leading-6 text-gray-400">
+                  {o.address.split(",").map((line, i) => <>{i > 0 && <br />}{line.trim()}</>)}
+                </address>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-16 md:mt-20 border-t border-gray-250 pt-8 flex flex-col gap-y-8 md:flex-row md:items-end md:justify-between">
+      <a href="/" aria-label={`${site.name} home`} class:list={[link, "block w-fit transition-transform duration-500 hover:-rotate-3"]}>
+        <Logo class="h-28 md:h-36 w-auto" pathClass="fill-gray-500" />
       </a>
+      <div class="flex flex-col gap-y-3 text-xs text-gray-400 md:items-end md:text-right">
+        <div class="flex gap-x-6">
+          <button type="button" class:list={[link, "cursor-pointer hover:text-gray-500 hover:underline underline-offset-4"]}
+            onclick="try { localStorage.removeItem('cookie-accepted') } catch (e) {} location.reload()">Cookie preferences</button>
+          <a href="#" class:list={[link, "hover:text-gray-500 hover:underline underline-offset-4"]}>Back to top</a>
+        </div>
+        <p>© {year} {site.company}. All rights reserved.</p>
+      </div>
     </div>
   </div>
 </footer>

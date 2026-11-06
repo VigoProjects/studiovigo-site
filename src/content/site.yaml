@@ -9,11 +9,28 @@ nav:
   - { label: Insights, href: /insights }
   - { label: Get in Touch, href: /contact }
 
-footerNav:
-  - { label: Case Studies, href: "/#case-studies" }
-  - { label: About, href: "/#about" }
-  - { label: Contact, href: /contact }
-  - { label: Services, href: "/#services" }
+# Footer: intro line, contact links (the first is shown large), and link columns.
+footer:
+  intro: A digital product studio turning complex data and systems into products people want to use.
+  contact:
+    - { label: hello@vigodigital.co, href: "mailto:hello@vigodigital.co" }
+    - { label: "+44 (0) 203 576 3527", href: "tel:+442035763527" }
+  columns:
+    - heading: Explore
+      links:
+        - { label: Case studies, href: /case-studies }
+        - { label: Insights, href: /insights }
+        - { label: About, href: "/#about" }
+        - { label: Contact, href: /contact }
+    - heading: Services
+      links:
+        - { label: Product strategy, href: /product-strategy }
+        - { label: Discovery & prototyping, href: /discovery-prototyping }
+        - { label: UX & UI design, href: /uxui-design }
+        - { label: AI prototype to production, href: /ai-prototype-to-production }
+        - { label: Enterprise products, href: /digital-product-agency-enterprise }
+  # Heading for the offices list below.
+  officesHeading: Offices
 
 offices:
   - { city: London, address: "33 Foley Street, London W1W 7TL" }
