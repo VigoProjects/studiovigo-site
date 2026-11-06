@@ -19,6 +19,8 @@ export interface SiteConfig {
   clutchCompanyId?: string;
   /** Official profiles elsewhere (Clutch, LinkedIn…), used in structured data. */
   sameAs?: string[];
+  /** Share-card text overrides, keyed by page slug. See src/lib/og.ts. */
+  shareCards?: Record<string, { eyebrow?: string; headline: string; highlight?: string; after?: string }>;
   footerBadges?: { src: string; alt: string; href?: string }[];
   fontAwesomeKit?: string;
 }

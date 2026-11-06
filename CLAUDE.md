@@ -29,6 +29,8 @@ describing them in plain English to an AI coding assistant. Read this file befor
 | Service-page colour themes & floating shapes | `src/lib/themes.ts` |
 | How a block looks | `src/components/blocks/<Name>.astro` |
 | Block fields / validation | `src/content/blocks.ts` |
+| Share images (LinkedIn/Slack previews) | Generated automatically from each page's hero headline — see `src/lib/og.ts`. Text overrides: `shareCards` in `src/content/site.yaml`. Card design: `scripts/og/card-background.html` |
+| Structured data for Google | `src/lib/schema.ts` (facts come from `site.yaml`) |
 | Redirects, headers | `vercel.json` |
 | Images, video | `public/assets/` (reference as `/assets/…`) |
 
@@ -91,7 +93,9 @@ to appear as a large homepage card it needs `featuredCard` art (copy an existing
    (case-study brand colours in front matter are the exception).
 4. **Keep URLs stable.** Don't rename a published slug without a 301 in `vercel.json`.
 5. **SEO:** every page needs `title` and `description` (150–160 chars). Images need real `alt` text.
-6. **Images:** `public/assets/`, prefer `.webp`/`.jpg` under ~300 KB.
+6. **Images:** `public/assets/`, prefer `.webp`/`.jpg` under ~300 KB. After adding large images run
+   `node scripts/optimise-images.mjs` — it converts them to WebP and updates references.
+   Width/height are added to every image automatically at build time.
 7. **Before finishing, run `npm run build`** and fix any errors.
 8. **No secrets in the repo.** API keys live in Vercel environment variables.
 9. **Analytics are consent-gated.** GTM only loads after "Accept All" — keep it that way (UK PECR/GDPR).

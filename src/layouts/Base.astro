@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro";
 import CookieBanner from "../components/CookieBanner.astro";
 import { site } from "../lib/site";
 import { organization, website, breadcrumbs as crumbs } from "../lib/schema";
+import { shareCardFor } from "../lib/og";
 
 interface Props {
   title: string;
@@ -30,6 +31,9 @@ const jsonLd = [
   ...schema,
 ];
 const canonical = new URL(path, Astro.site).href;
+// Pages without their own image get their generated share card (src/lib/og.ts).
+const shareCard = ogImage ? undefined : await shareCardFor(path);
+const shareImage = ogImage ?? shareCard;
 const gtm = site.analytics?.gtm;
 ---
 <!doctype html>
@@ -47,7 +51,10 @@ const gtm = site.analytics?.gtm;
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="en_GB" />
-    {ogImage && <meta property="og:image" content={new URL(ogImage, Astro.site).href} />}
+    {shareImage && <meta property="og:image" content={new URL(shareImage, Astro.site).href} />}
+    {shareCard && <meta property="og:image:width" content="1200" />}
+    {shareCard && <meta property="og:image:height" content="630" />}
+    {shareImage && <meta property="og:image:alt" content={fullTitle} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />

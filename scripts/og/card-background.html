@@ -1,0 +1,37 @@
+<!doctype html>
+<!-- Share card design layer. Edit, then run: node scripts/og/render-background.cjs -->
+<html><head><meta charset="utf-8">
+<style>
+  @font-face { font-family: "Made Tommy"; font-weight: 400; src: url("../../public/fonts/made-tommy-regular.woff2") format("woff2"); }
+  @font-face { font-family: "Made Tommy"; font-weight: 500; src: url("../../public/fonts/made-tommy-medium.woff2") format("woff2"); }
+  @font-face { font-family: "Made Tommy"; font-weight: 700; src: url("../../public/fonts/made-tommy-bold.woff2") format("woff2"); }
+  :root {
+    --teal: oklch(73.33% .1155 210.28); --purple: oklch(56.79% .2395 286.18);
+    --coral: oklch(65.57% .229 9.42); --yellow: oklch(96.21% .1486 106.42);
+    --ink: oklch(32.11% 0 0); --muted: oklch(44.95% 0 0);
+  }
+  * { margin: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; background: #fff; font-family: "Made Tommy", Arial, sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
+  .card { position: relative; width: 1200px; height: 630px; overflow: hidden; background: #fff; }
+  /* The site's hero wash: soft brand gradient blurred across the top and bottom edges */
+  .wash { position: absolute; left: -80px; right: -80px; filter: blur(45px); pointer-events: none; }
+  .wash.top { top: -70px; height: 150px; background: linear-gradient(262deg, var(--teal), var(--purple), var(--coral), var(--yellow)); opacity: .55; }
+  .wash.bottom { bottom: -90px; height: 160px; background: linear-gradient(262deg, var(--teal), var(--purple), var(--coral), var(--yellow)); opacity: .3; }
+  /* multiply drops the artwork's white background so the wash shows through */
+  .art { position: absolute; right: -250px; top: 50%; width: 820px; transform: translateY(-46%); mix-blend-mode: multiply; }
+  .content { position: absolute; left: 80px; top: 0; bottom: 0; width: 560px; display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+  .logo { position: absolute; left: 80px; top: 64px; height: 92px; }
+  .eyebrow { font-size: 20px; font-weight: 700; color: var(--muted); }
+  h1 { font-size: 62px; line-height: 1.04; font-weight: 700; letter-spacing: -1.3px; }
+  .accent { background: linear-gradient(to right, var(--coral), var(--purple), var(--teal)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .url { position: absolute; left: 80px; bottom: 60px; font-size: 22px; font-weight: 500; color: var(--ink); }
+</style></head>
+<body>
+  <div class="card">
+    <div class="wash top"></div>
+    <div class="wash bottom"></div>
+    <img class="art" src="../../public/assets/hero-morphing-poster.webp" alt="">
+    <img class="logo" src="../../public/assets/test-logo.svg" alt="">
+    <p class="url">studiovigo.co.uk</p>
+  </div>
+</body></html>
