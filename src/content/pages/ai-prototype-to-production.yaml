@@ -10,7 +10,9 @@ blocks:
     cta:
       label: Talk to us
       href: /contact
-    video: /assets/morphing-graphic-%281080%29.mp4
+    video: /assets/hero-morphing.mp4
+    videoWebm: /assets/hero-morphing.webm
+    poster: /assets/hero-morphing-poster.webp
   - type: logos
     heading: Trusted by organisations including Bloomberg, AARP and the Open Data Institute.
     items:

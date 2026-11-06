@@ -10,6 +10,7 @@ import BlockRenderer from "../components/BlockRenderer.astro";
 import ServiceHero from "../components/article/ServiceHero.astro";
 import ArticleFlow from "../components/article/ArticleFlow.astro";
 import { mdxComponents } from "../components/mdx";
+import { service } from "../lib/schema";
 
 type P = { kind: "page"; entry: CollectionEntry<"pages"> } | { kind: "service"; entry: CollectionEntry<"services"> };
 
@@ -26,7 +27,8 @@ export async function getStaticPaths() {
 const props = Astro.props as P;
 ---
 {props.kind === "page" ? (
-  <Base title={props.entry.data.title} metaTitle={props.entry.data.metaTitle} description={props.entry.data.description} ogImage={props.entry.data.ogImage}>
+  <Base title={props.entry.data.title} metaTitle={props.entry.data.metaTitle} description={props.entry.data.description} ogImage={props.entry.data.ogImage}
+    breadcrumbs={[[props.entry.data.title, `/${props.entry.id}`]]}>
     <BlockRenderer blocks={props.entry.data.blocks} />
   </Base>
 ) : (
@@ -34,7 +36,9 @@ const props = Astro.props as P;
     const d = props.entry.data;
     const { Content } = await render(props.entry);
     return (
-      <Base title={d.title} metaTitle={d.title} description={d.description} ogImage={d.ogImage}>
+      <Base title={d.title} metaTitle={d.title} description={d.description} ogImage={d.ogImage}
+        breadcrumbs={[[d.eyebrow, `/${props.entry.id}`]]}
+        schema={[service({ name: d.eyebrow, description: d.description, path: `/${props.entry.id}` })]}>
         <ServiceHero eyebrow={d.eyebrow} heading={d.heading} illustration={d.illustration} theme={d.theme} />
         <ArticleFlow theme={d.theme}><Content components={mdxComponents} /></ArticleFlow>
       </Base>

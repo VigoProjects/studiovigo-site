@@ -5,6 +5,7 @@ import ArticleHero from "../../components/article/ArticleHero.astro";
 import ArticleFlow from "../../components/article/ArticleFlow.astro";
 import Text from "../../components/mdx/Text.astro";
 import { mdxComponents } from "../../components/mdx";
+import { article } from "../../lib/schema";
 
 export async function getStaticPaths() {
   const posts = await getCollection("insights", (e) => !e.data.draft);
@@ -15,22 +16,15 @@ const d = post.data;
 const { Content } = await render(post);
 // Plain .md articles are one text column; .mdx articles lay out their own sections.
 const isMdx = post.filePath?.endsWith(".mdx");
-const schema = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: d.title,
-  datePublished: d.date.toISOString(),
-  author: { "@type": "Person", name: d.author },
-  publisher: { "@type": "Organization", name: "Vigo Projects Limited" },
-  ...(d.heroImage ? { image: new URL(d.heroImage, Astro.site).href } : {}),
-};
+const path = `/insights/${post.id}`;
+const schema = [article({ type: "BlogPosting", title: d.title, description: d.description, path, date: d.date, author: d.author, image: d.heroImage ?? d.listingImage })];
 ---
-<Base title={d.title} metaTitle={d.metaTitle} description={d.description} ogImage={d.ogImage ?? d.heroImage} type="article">
+<Base title={d.title} metaTitle={d.metaTitle} description={d.description} ogImage={d.ogImage ?? d.heroImage ?? d.listingImage} type="article"
+  breadcrumbs={[["Insights", "/insights"], [d.title, path]]} {schema}>
   <article>
     <ArticleHero title={d.title} color={d.heroColor} textColor={d.heroTextColor} image={d.heroImage} />
     <ArticleFlow>
       {isMdx ? <Content components={mdxComponents} /> : <Text><Content /></Text>}
     </ArticleFlow>
   </article>
-  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 </Base>

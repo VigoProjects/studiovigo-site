@@ -6,7 +6,7 @@ date: 2026-07-28
 author: John Beck
 heroColor: "#ff6400"
 heroTextColor: "#ffffff"
-heroImage: /assets/pexels-lukas-medvedevas-6228921-6037882.jpg
+heroImage: /assets/pexels-lukas-medvedevas-6228921-6037882.webp
 ---
 
 The hardest platforms to transform are not the broken ones. They are the ones that work well enough that nobody can justify switching them off, and badly enough that everyone complains about them in every meeting.

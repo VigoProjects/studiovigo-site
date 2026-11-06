@@ -6,7 +6,7 @@ date: 2026-07-27
 author: John Beck
 heroColor: "#1d80f4"
 heroTextColor: "#ffffff"
-heroImage: /assets/pexels-karola-g-4959907.jpg
+heroImage: /assets/pexels-karola-g-4959907.webp
 ---
 
 Send the same enterprise MVP brief to four agencies and you will get back something like £38,000, £110,000, £240,000 and a polite request for a call. This is not because they are trying to mislead you, they are pricing four very different products, because your brief left four different gaps, and each agency filled those gaps with its own assumptions about discovery, integrations, accessibility and how many of your stakeholders will need to be in the room.

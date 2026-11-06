@@ -8,7 +8,9 @@ blocks:
     highlight: they're evolved.
     body: We turn complex data and systems into digital products people love to use, with strategy-led discovery, UX design and front-end development. From first insight through to post-launch optimisation.
     cta: { label: Get in Touch, href: /contact }
-    video: /assets/morphing-graphic-%281080%29.mp4
+    video: /assets/hero-morphing.mp4
+    videoWebm: /assets/hero-morphing.webm
+    poster: /assets/hero-morphing-poster.webp
 
   - type: logos
     heading: "Trusted by organisations including:"
@@ -38,7 +40,7 @@ blocks:
       A digital product studio designs and builds the software people use every day: customer portals, SaaS platforms, internal tools and e-commerce journeys that need more than a marketing website. The work runs from research and strategy through interface design and front-end development, and carries on after launch.
 
       Vigo does all of that with a small senior team. Strategy, UX and UI design and front-end engineering sit together from day one, so the layouts we test are the layouts that get built, and the metrics we agree in discovery are the ones we report on after launch.
-    image: { src: /assets/2025-11-06-17.14.23.jpg, alt: The Vigo team at work }
+    image: { src: /assets/2025-11-06-17.14.23.webp, alt: The Vigo team at work }
 
   - type: cards
     heading: From UX concept to post-launch measurement, under one roof

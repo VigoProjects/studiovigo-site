@@ -6,7 +6,7 @@ date: 2026-04-07
 author: John Beck
 heroColor: "#ffffff"
 heroTextColor: "#A92A46"
-heroImage: /assets/istock-1345330958.jpg
+heroImage: /assets/istock-1345330958.webp
 ---
 
 Most organisations with a legacy application face the same uncomfortable moment: the product still works, users still rely on it, and it cost a significant amount to build. But it now looks and feels like it belongs to a different decade. At the same time,competitors are shipping polished interfaces, new hires are frustrated on day one, and someone in the boardroom is asking whether it's time to start again.

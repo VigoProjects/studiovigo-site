@@ -1,6 +1,8 @@
 # Global site settings: navigation, footer, offices, closing CTA, analytics.
 name: Vigo
 company: Vigo Projects Limited
+email: hello@vigodigital.co
+phone: "+44 (0) 203 576 3527"
 tagline: Vigo is a digital product agency that digs deep into complex data, systems and user journeys to design digital products people actually want to use.
 
 nav:
@@ -34,6 +36,10 @@ cookieMessage: We use cookies for analytics and marketing. No data is shared wit
 analytics:
   # Google Tag Manager — only loads after the visitor clicks "Accept All".
   gtm: GTM-WC36BZ5K
+
+# Vigo's official profiles on other sites. Helps Google connect them to this site. Add LinkedIn etc. here.
+sameAs:
+  - https://clutch.co/profile/vigo
 
 # Clutch review badge in the footer (remove to hide).
 clutchCompanyId: "2156962"

@@ -10,7 +10,9 @@ blocks:
     cta:
       label: Book an initial call
       href: /contact
-    video: /assets/morphing-graphic-%281080%29.mp4
+    video: /assets/hero-morphing.mp4
+    videoWebm: /assets/hero-morphing.webm
+    poster: /assets/hero-morphing-poster.webp
   - type: logos
     heading: Trusted worldwide
     items:
@@ -49,7 +51,7 @@ blocks:
 
       Large consultancies bring scale but rarely the hands-on product craft that complex builds need. Small studios bring design talent but often lack the governance, technical depth or stakeholder management that enterprise delivery requires. Vigo sits between the two: senior people doing the work, with the structure to ship it.
     image:
-      src: /assets/gemini_generated_image_oc7533oc7533oc75.png
+      src: /assets/gemini_generated_image_oc7533oc7533oc75.webp
       alt: ""
   - type: prose
     eyebrow: What enterprise clients actually need from a digital product partner
@@ -68,7 +70,7 @@ blocks:
           
       -   **Post-launch engagement.** Does the agency stay to measure and improve? _We benchmark new interfaces against the old ones on time on task, clicks and user preference._
     image:
-      src: /assets/gemini_generated_image_ggvx4sggvx4sggvx.png
+      src: /assets/gemini_generated_image_ggvx4sggvx4sggvx.webp
       alt: ""
   - type: tabs
     id: about
@@ -105,7 +107,7 @@ blocks:
 
       Our work covers infrastructure cost estimating, carbon reporting under PAS 2080, clinical trials software and complex e-commerce. The [Benchmark Estimating legacy UI uplift](/case-studies/legacy-application-ui-uplift) and the [Axivera clinical trials platform](/case-studies/axivera) show the regulated, data-intensive work we’re built for. The [Catchbox e-commerce redesign](/case-studies/catchbox) shows how we handle international, multi-product ecosystems.
     image:
-      src: /assets/gemini_generated_image_f3m9u3f3m9u3f3m9.png
+      src: /assets/gemini_generated_image_f3m9u3f3m9u3f3m9.webp
       alt: ""
   - type: services
     id: services
@@ -139,7 +141,7 @@ blocks:
 
       Read our guide to [enterprise MVP agency pricing](/insights/enterprise-mvp-agency-pricing)
     image:
-      src: /assets/gemini_generated_image_f3m9u3f3m9u3f3m9.png
+      src: /assets/gemini_generated_image_f3m9u3f3m9u3f3m9.webp
       alt: ""
   - type: caseStudies
     id: case-studies
@@ -164,7 +166,7 @@ blocks:
 
       [Data-informed design](/insights/data-informed-design): How the best product teams use data to make better design decisions, without letting it crowd out judgement.
     image:
-      src: /assets/vigo_reading.png
+      src: /assets/vigo_reading.webp
       alt: ""
   - type: faq
     heading: Your questions answered

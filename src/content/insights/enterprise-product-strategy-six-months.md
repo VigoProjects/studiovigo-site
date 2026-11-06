@@ -6,7 +6,7 @@ date: 2026-07-27
 author: John Beck
 heroColor: "#1d82f4"
 heroTextColor: "#ffffff"
-heroImage: /assets/pexels-towfiqu-barbhuiya-3440682-14426300.jpg
+heroImage: /assets/pexels-towfiqu-barbhuiya-3440682-14426300.webp
 ---
 
 Here is the arithmetic nobody puts in the proposal. You sign a six-month product strategy engagement in early March. Procurement takes four weeks. Security review of the supplier takes three more. Your data protection impact assessment sits with legal for a fortnight. API credentials for the system you need to integrate with arrive in the second week of May.

@@ -4,6 +4,7 @@ import Base from "../../layouts/Base.astro";
 import ArticleHero from "../../components/article/ArticleHero.astro";
 import ArticleFlow from "../../components/article/ArticleFlow.astro";
 import { mdxComponents } from "../../components/mdx";
+import { article } from "../../lib/schema";
 
 export async function getStaticPaths() {
   const items = await getCollection("caseStudies", (e) => !e.data.draft);
@@ -12,8 +13,11 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
+const path = `/case-studies/${entry.id}`;
+const schema = [article({ title: d.heading, description: d.description, path, image: d.heroImage ?? d.listingImage })];
 ---
-<Base title={d.title} metaTitle={d.title} description={d.description} ogImage={d.ogImage ?? d.heroImage ?? d.listingImage} type="article">
+<Base title={d.title} metaTitle={d.title} description={d.description} ogImage={d.ogImage ?? d.heroImage ?? d.listingImage} type="article"
+  breadcrumbs={[["Case studies", "/case-studies"], [d.listingTitle, path]]} {schema}>
   <article>
     <ArticleHero title={d.heading} color={d.heroColor} textColor={d.heroTextColor} image={d.heroImage} />
     <ArticleFlow><Content components={mdxComponents} /></ArticleFlow>

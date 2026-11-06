@@ -6,7 +6,7 @@ date: 2026-10-18
 author: Lucinda Bianchi
 heroColor: "#000000"
 heroTextColor: "#ffffff"
-heroImage: /assets/pexels-jakubzerdzicki-37116245.jpg
+heroImage: /assets/pexels-jakubzerdzicki-37116245.webp
 ---
 
 AI models have got dramatically better at writing code over the last two years, but they haven't got much better at writing secure code.

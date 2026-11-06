@@ -6,7 +6,7 @@ date: 2026-03-29
 author: Lucinda Bianchi
 heroColor: "#21436B"
 heroTextColor: "#ECA36E"
-heroImage: /assets/best-digital-product-agencies-enterprise.png.png
+heroImage: /assets/best-digital-product-agencies-enterprise.webp
 ---
 
 *Published 29 March 2026. Updated 5 November 2026.*

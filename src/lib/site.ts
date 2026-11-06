@@ -7,6 +7,8 @@ export interface SiteConfig {
   name: string;
   company: string;
   tagline: string;
+  email: string;
+  phone: string;
   nav: { label: string; href: string }[];
   footerNav: { label: string; href: string }[];
   offices: { city: string; address: string }[];
@@ -15,6 +17,8 @@ export interface SiteConfig {
   cookieMessage: string;
   analytics?: { gtm?: string };
   clutchCompanyId?: string;
+  /** Official profiles elsewhere (Clutch, LinkedIn…), used in structured data. */
+  sameAs?: string[];
   footerBadges?: { src: string; alt: string; href?: string }[];
   fontAwesomeKit?: string;
 }

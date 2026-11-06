@@ -5,7 +5,7 @@ date: 2026-10-18
 author: Lucinda Bianchi
 heroColor: "#000000"
 heroTextColor: "#ffffff"
-heroImage: /assets/pexels-mizunokozuki-12899156.jpg
+heroImage: /assets/pexels-mizunokozuki-12899156.webp
 ---
 
 In 2023, engineers at Samsung pasted proprietary source code into ChatGPT to help debug it. A few weeks later the company restricted generative AI tools on work devices. Three years on, most enterprises have swung from banning AI to wanting it in every part of delivery, but the question that worried Samsung hasn't gone away. How do you use AI in product development without your source code or customer data ending up somewhere you can't get it back from?

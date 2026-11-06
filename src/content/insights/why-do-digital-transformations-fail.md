@@ -6,7 +6,7 @@ date: 2026-06-02
 author: John Beck
 heroColor: "#000000"
 heroTextColor: "#ffffff"
-heroImage: /assets/digital_transformation_fail-%281%29.png
+heroImage: /assets/digital_transformation_fail-%281%29.webp
 ---
 
 Seven in ten. That's the proportion of digital transformation initiatives that fail to achieve what they set out to do. Not just partially delivered or slightly off-target, genuinely failing to meet their stated objectives. For context, organisations worldwide are spending over $2.5 trillion annually on these initiatives. The failure rate isn't improving. In some analyses, it's getting worse.

@@ -32,7 +32,10 @@ export const hero = z.object({
   body: z.string().optional(),
   cta: link.optional(),
   secondaryCta: link.optional(),
+  /** MP4 video (plays muted on loop). Optional smaller WebM version and a still poster frame. */
   video: z.string().optional(),
+  videoWebm: z.string().optional(),
+  poster: z.string().optional(),
   image: image.optional(),
 });
 

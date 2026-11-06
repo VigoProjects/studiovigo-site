@@ -6,7 +6,7 @@ date: 2026-07-22
 author: John Beck
 heroColor: "#616c58"
 heroTextColor: "#ffffff"
-heroImage: /assets/pexels-photograph-11706725.jpg
+heroImage: /assets/pexels-photograph-11706725.webp
 ---
 
 Six weeks sounds short. And if you've ever sat through a digital project that dragged on for six months and still launched half-finished, you might be forgiven for thinking that six weeks barely gets you to a wireframe.

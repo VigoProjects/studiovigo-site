@@ -4,14 +4,19 @@ import type { z } from "astro/zod";
 import type { hero } from "../../content/blocks";
 import Button from "../Button.astro";
 type Props = z.infer<typeof hero> & { isPageTitle?: boolean };
-const { eyebrow, heading, highlight, after, body, cta, secondaryCta, video, image, id, isPageTitle = true } = Astro.props;
+const { eyebrow, heading, highlight, after, body, cta, secondaryCta, video, videoWebm, poster, image, id, isPageTitle = true } = Astro.props;
 const Eyebrow = isPageTitle ? "h1" : "p";
 ---
 <div id={id} class="relative group overflow-hidden bg-white z-10">
   <div class="absolute inset-0 -top-5 z-10 gradient-hero gradient-hero--animated h-17 xl:h-25 opacity-100 blur-2xl pointer-events-none"></div>
   <div class="absolute inset-0 z-10 gradient-hero gradient-hero--animated h-36 xl:h-50 opacity-20 blur-4xl pointer-events-none"></div>
   <div class="container py-14 md:pb-24 text-center items-center flex flex-col gap-y-8.5 md:gap-y-6 xl:flex-row xl:py-34 xl:text-left">
-    {video && <video src={video} class="w-full md:max-w-xl xl:order-1 xl:max-w-[870px]" autoplay muted loop playsinline aria-hidden="true"></video>}
+    {video && (
+      <video class="w-full md:max-w-xl xl:order-1 xl:max-w-[870px] aspect-video" poster={poster} width="1600" height="900" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+        {videoWebm && <source src={videoWebm} type="video/webm" />}
+        <source src={video} type="video/mp4" />
+      </video>
+    )}
     {!video && image && <img src={image.src} alt={image.alt} class="w-full md:max-w-xl xl:order-1 xl:max-w-[870px]" />}
     <div class="relative z-20 flex flex-col gap-y-8 md:max-w-smx">
       <div class="flex flex-col gap-y-3">

@@ -13,10 +13,10 @@
    NOTE: the files carry a "PERSONAL USE" licence — buy a commercial
    licence (or swap the font here) before relying on them commercially.
    ------------------------------------------------------------------ */
-@font-face { font-family: "Made Tommy"; font-weight: 400; font-style: normal; font-display: swap; src: url("/fonts/made-tommy-regular.otf") format("opentype"); }
-@font-face { font-family: "Made Tommy"; font-weight: 500; font-style: normal; font-display: swap; src: url("/fonts/made-tommy-medium.otf") format("opentype"); }
-@font-face { font-family: "Made Tommy"; font-weight: 700; font-style: normal; font-display: swap; src: url("/fonts/made-tommy-bold.otf") format("opentype"); }
-@font-face { font-family: "Made Tommy"; font-weight: 900; font-style: normal; font-display: swap; src: url("/fonts/made-tommy-black.otf") format("opentype"); }
+@font-face { font-family: "Made Tommy"; font-weight: 400; font-style: normal; font-display: swap; src: url("/fonts/made-tommy-regular.woff2") format("woff2"); }
+@font-face { font-family: "Made Tommy"; font-weight: 500; font-style: normal; font-display: swap; src: url("/fonts/made-tommy-medium.woff2") format("woff2"); }
+@font-face { font-family: "Made Tommy"; font-weight: 700; font-style: normal; font-display: swap; src: url("/fonts/made-tommy-bold.woff2") format("woff2"); }
+@font-face { font-family: "Made Tommy"; font-weight: 900; font-style: normal; font-display: swap; src: url("/fonts/made-tommy-black.woff2") format("woff2"); }
 
 @theme {
   --font-sans: "Made Tommy", Arial;

@@ -5,7 +5,7 @@ import PageHeader from "../../components/blocks/PageHeader.astro";
 import ListingCard from "../../components/ListingCard.astro";
 const items = (await getCollection("caseStudies", (e) => !e.data.draft)).sort((a, b) => a.id.localeCompare(b.id));
 ---
-<Base title="Case Studies" description="Recent digital product projects from Vigo: SaaS platforms, legacy UI uplifts, clinical trials prototypes and complex e-commerce.">
+<Base title="Case Studies" description="Recent digital product projects from Vigo: SaaS platforms, legacy UI uplifts, clinical trials prototypes and complex e-commerce." breadcrumbs={[["Case studies", "/case-studies"]]}>
   <PageHeader type="pageHeader" background="white" eyebrow="Case Studies" heading="Some of our most recent projects. Please [contact us](/contact) for our complete portfolio." />
   <div class="container my-16">
     <div class="grid lg:grid-cols-3 gap-6 xl:gap-12 xl:w-fit xl:mx-auto">

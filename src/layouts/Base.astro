@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import CookieBanner from "../components/CookieBanner.astro";
 import { site } from "../lib/site";
+import { organization, website, breadcrumbs as crumbs } from "../lib/schema";
 
 interface Props {
   title: string;
@@ -12,10 +13,22 @@ interface Props {
   type?: "website" | "article";
   /** Full <title> override; otherwise "<title> | Vigo". */
   metaTitle?: string;
+  /** Breadcrumb trail for search results, e.g. [["Insights", "/insights"], ["Title", "/insights/slug"]]. */
+  breadcrumbs?: [string, string][];
+  /** Extra JSON-LD objects for this page (Article, Service…). */
+  schema?: object[];
 }
-const { title, description = site.tagline, ogImage, type = "website", metaTitle } = Astro.props;
-const fullTitle = metaTitle ?? (title === "Home" ? `Digital Product Agency for Complex Systems & Big Data | ${site.name}` : `${title} | ${site.name}`);
+const { title, description = site.tagline, ogImage, type = "website", metaTitle, breadcrumbs, schema = [] } = Astro.props;
+// "| Vigo" is only appended when the result still fits Google's ~60-character display.
+const suffixed = (t: string) => (`${t} | ${site.name}`.length <= 60 ? `${t} | ${site.name}` : t);
+const fullTitle = metaTitle ?? (title === "Home" ? `Digital Product Agency for Complex Systems & Big Data | ${site.name}` : suffixed(title));
 const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const jsonLd = [
+  ...(path === "/" ? [organization(), website()] : []),
+  ...(path === "/contact" ? [organization()] : []),
+  ...(breadcrumbs?.length ? [crumbs(breadcrumbs)] : []),
+  ...schema,
+];
 const canonical = new URL(path, Astro.site).href;
 const gtm = site.analytics?.gtm;
 ---
@@ -29,20 +42,21 @@ const gtm = site.analytics?.gtm;
     <link rel="canonical" href={canonical} />
     <meta name="robots" content="index, follow" />
     <meta property="og:site_name" content={site.name} />
-    <meta property="og:title" content={title} />
+    <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content={type} />
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="en_GB" />
     {ogImage && <meta property="og:image" content={new URL(ogImage, Astro.site).href} />}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
+    <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
+    {jsonLd.map((o) => <script type="application/ld+json" set:html={JSON.stringify(o)} />)}
     <link rel="icon" href="/favicon/favicon.ico" sizes="any" />
     <link rel="manifest" href="/favicon/site.webmanifest" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="preload" href="/fonts/made-tommy-regular.otf" as="font" type="font/otf" crossorigin />
-    <link rel="preload" href="/fonts/made-tommy-bold.otf" as="font" type="font/otf" crossorigin />
+    <link rel="preload" href="/fonts/made-tommy-regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/made-tommy-bold.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap" />

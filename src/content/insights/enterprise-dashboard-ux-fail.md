@@ -6,7 +6,7 @@ date: 2026-05-13
 author: John Beck
 heroColor: "#FFFFFF"
 heroTextColor: "#000000"
-heroImage: /assets/oct-25/generic/pexels-negativespace-97080.jpg
+heroImage: /assets/oct-25/generic/pexels-negativespace-97080.webp
 ---
 
 We've redesigned a lot of enterprise dashboards. And in almost every project, we find the same problems waiting for us: a screen that was built to impress a stakeholder in a demo rather than help an actual user do their job.

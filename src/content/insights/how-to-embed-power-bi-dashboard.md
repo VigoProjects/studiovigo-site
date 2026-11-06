@@ -6,7 +6,7 @@ date: 2026-05-13
 author: John Beck
 heroColor: "#FFFFFF"
 heroTextColor: "#000000"
-heroImage: /assets/oct-25/pexels-rdne-7947954-%281%29.jpg
+heroImage: /assets/oct-25/pexels-rdne-7947954-%281%29.webp
 ---
 
 Most Power BI dashboards tell a story that nobody wants to read.
